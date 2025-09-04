@@ -1,14 +1,14 @@
-import styles from './Navbar.module.css';
+import React from "react";
+import styles from "./Navbar.module.css";
 
-
-export default function Navbar() {
+const Navbar: React.FC = () => {
   return (
     <nav className={styles.nav}>
-      <ul>
-        <li>About</li>
-        <li>Work</li>
-        <li>Contact</li>
-      </ul>
+      <a className={styles.navItem} href="#">Home</a>
+      <a className={styles.navItem} href="#">About</a>
+      <a className={styles.navItem} href="#">Contact</a>
     </nav>
-  )
-}
+  );
+};
+
+export default Navbar;

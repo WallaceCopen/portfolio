@@ -1,15 +1,12 @@
+import Navbar from "./components/navbar/Navbar"
 
-
-import './App.css'
-
-
-function App() {
-
+const App: React.FC = () => {
   return (
     <>
+      <Navbar />
       <h1>Welcome to my Portfolio</h1>
     </>
-  )
-}
+  );
+};
 
 export default App

@@ -1,4 +1,13 @@
 .nav {
     background-color: #ffffff;
     opacity: 50%;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+.navItem {
+    font-size: 18px;
+    color: #333333;
+    text-decoration: none;
+    cursor: pointer;
 }
