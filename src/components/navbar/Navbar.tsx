@@ -3,11 +3,13 @@ import styles from "./Navbar.module.css";
 
 const Navbar: React.FC = () => {
   return (
-    <nav className={styles.nav}>
-      <a className={styles.navItem} href="#">Home</a>
-      <a className={styles.navItem} href="#">About</a>
-      <a className={styles.navItem} href="#">Contact</a>
-    </nav>
+    <div className={styles.Navbar}>
+      <nav>
+        <a href='#home'>Home</a>
+        <a href='#about'>About</a>
+        <a href='#projects'>Projects</a>
+      </nav>
+    </div>
   );
 };
 
