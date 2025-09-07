@@ -1,6 +1,14 @@
-#My Portfolio
+## My Portfolio
 
-#Description
+# Overview
 
-A modern personal portfolio built with React and TypeScript, designed to showcase my projects, skills, and experience. Features a clean UI, responsive design, and easy customization for future updates.
+This is my personal developer portfolio, built with React and TypeScript.
+It’s designed to be fast, accessible, and easy to maintain, while showcasing my projects, skills, and experience in a clean, modern way.
 
+# Future Improvements
+
+* Dark mode toggle
+
+* Blog/notes section with MDX
+
+* Project filtering and search
