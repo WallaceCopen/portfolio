@@ -9,6 +9,6 @@ It’s designed to be fast, accessible, and easy to maintain, while showcasing m
 
 * Dark mode toggle
 
-* Blog/notes section with MDX
+* More Colors Possibly
 
 * Project filtering and search
