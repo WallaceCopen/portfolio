@@ -1,4 +1,6 @@
-# My Personal Portfolio
+#My Portfolio
 
-This is my portfolio, I am making to display my projects and skills. I am creating it with React.
+#Description
+
+A modern personal portfolio built with React and TypeScript, designed to showcase my projects, skills, and experience. Features a clean UI, responsive design, and easy customization for future updates.
 
