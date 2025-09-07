@@ -1,7 +1,7 @@
 import styles from './Navbar.module.css';
+import React from 'react';
 
-
-export default function Navbar() {
+const Navbar: React.FC = () => { 
   return (
     <div className={styles.Navbar}>
       <nav>
@@ -11,5 +11,7 @@ export default function Navbar() {
       </nav>
     </div>
     
-  )
-}
+  );
+};
+
+export default Navbar;
