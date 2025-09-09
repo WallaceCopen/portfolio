@@ -1,10 +1,13 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 
+
+const GRADIENT = 'url(#gridGradient)';
 const NUM_LINES = 5;
-const GRID_COLOR = 'rgba(0,0,0,0.03)';
+const GRID_COLOR = GRADIENT;
 const BASE_ANIMATION_DURATION = 800;
 const ANIMATION_VARIANCE = 500; 
 const STAGGER = 200;
+
 
 const GridBackground: React.FC = () => {
     const [animate, setAnimate] = useState(false);
@@ -75,6 +78,24 @@ const GridBackground: React.FC = () => {
             <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ display: 'block', width: '100vw', height: '100vh' }}>
                 {lines}
             </svg>
+            
+            <svg
+                width="100%"
+                height="100%"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+                style={{ display: 'block', width: '100vw', height: '100vh' }}
+            >
+                <defs>
+                    <linearGradient id="gridGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#b0b0b0" stopOpacity="0.3"/>  {/* silvery gray */}
+                    <stop offset="100%" stopColor="#ffffff" stopOpacity="0.3" /> {/* pure white */}
+                    </linearGradient>
+                </defs>
+
+                {lines}
+                </svg>
+
         </div>
     );
 };
