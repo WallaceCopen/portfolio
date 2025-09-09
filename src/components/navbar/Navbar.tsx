@@ -1,16 +1,15 @@
-import styles from './Navbar.module.css';
-import React from 'react';
 
-const Navbar: React.FC = () => { 
+import React from "react";
+import { Link } from "../Text";
+import styles from "./Navbar.module.css";
+
+const Navbar: React.FC = () => {
   return (
-    <div className={styles.Navbar}>
-      <nav>
-        <a href='#home'>Home</a>
-        <a href='#about'>About</a>
-        <a href='#projects'>Projects</a>
-      </nav>
-    </div>
-    
+    <nav className={styles.Navbar}>
+      <Link href='#home'>Home</Link>
+      <Link href='#about'>About</Link>
+      <Link href='#projects'>Projects</Link>
+    </nav>
   );
 };
 

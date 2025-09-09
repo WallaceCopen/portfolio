@@ -1,4 +1,6 @@
-/* Global Styles for Portfolio */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
   margin: 0;
@@ -6,12 +8,18 @@
   box-sizing: border-box;
 }
 
+
+html,
+body,
+#root {
+  height: 100%;
+=======
 html, body, #root {
   height: 200vh;
 }
 
 body {
-  font-family: system-ui, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   line-height: 1.5;
   background: #fff;
   color: #111;

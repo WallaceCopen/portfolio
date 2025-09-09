@@ -1,17 +1,17 @@
 import Navbar from "./components/navbar/Navbar"
+import Header from "./components/header/Header"
+import Container from "./components/Container"
 
-function App() {
-
+const App: React.FC = () => {
   return (
     <>
-      <Navbar />
-      <div className='Home'>
-        <h1>Wallace Copen</h1>
-        <h2>Developer • Designer</h2>
-     </div>
+      <Container>
+        <Navbar />
+        <Header />
+      </Container>
     </>
-   
-  )
-}
+  );
+};
+
 
 export default App
