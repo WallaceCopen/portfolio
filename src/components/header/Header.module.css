@@ -41,10 +41,3 @@
     }
 }
 
-/* Icons under Name */
-
-.githubIcon, .mailIcon {
-    width: 2.25em;
-    height: auto;
-    margin-top: 0.5rem;
-}
