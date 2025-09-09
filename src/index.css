@@ -8,10 +8,14 @@
   box-sizing: border-box;
 }
 
+
 html,
 body,
 #root {
   height: 100%;
+=======
+html, body, #root {
+  height: 200vh;
 }
 
 body {
