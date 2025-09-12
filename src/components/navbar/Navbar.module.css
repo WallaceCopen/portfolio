@@ -41,7 +41,6 @@
   
       backdrop-filter: blur(15px) saturate(180%);
       -webkit-backdrop-filter: blur(15px) saturate(180%);
-  
       /* subtle glass borders */
       border-bottom: 1px solid rgba(255, 255, 255, 0.4);
       border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -89,4 +88,6 @@ nav {
         transition: color 0.2s ease;
         
     }
+
+    
 
