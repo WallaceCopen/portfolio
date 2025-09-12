@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Link } from "../Text";
+import { Link } from "../general/Text";
 import styles from "./Navbar.module.css";
 
 const Navbar: React.FC = () => {

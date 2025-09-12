@@ -1,7 +1,7 @@
-import { Paragraph, Title } from '../Text';
-import GridBackground from '../GridBackground';
+import { Paragraph, Title } from '../general/Text';
+import GridBackground from '../general/GridBackground';
 import styles from './Header.module.css';
-import Container from '../Container';
+import Container from '../general/Container';
 import ContactIcons from './contact/ContactIcons';
 import DownArrow from '../../assets/arrow-down.svg';
 
