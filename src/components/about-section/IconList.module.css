@@ -9,18 +9,18 @@
   }
 
   .scroller:hover {
-    animation-duration: calc(var(--iconlist-speed, 1ms) * 3);
+    animation: slow-stop 0.5s ease-in-out forwards
   }
   .title {
     font-size: 1.125rem;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 0.01em;
   }
   
   /* --- Your existing grid mode --- */
   .grid {
     display: grid;
-    gap: 0.75rem;
+    gap: 1.5rem;
   }
   
   .card {
@@ -72,14 +72,20 @@
     will-change: transform;
     
     animation: iconlist-scroll 15s linear infinite;
-    transition: animation-duration 0.6s ease; /* makes speed change smooth */
+    transition: animation-duration 1s ease; /* makes speed change smooth */
   }
-  
-  .scroller:hover {
-    /* animation-duration: 1s; */ /* 3x slower when hovered */
-  }
+
   
   @keyframes iconlist-scroll {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
+  }
+
+  @keyframes slow-stop {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(3em);
+    }
   }

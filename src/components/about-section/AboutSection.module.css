@@ -1,0 +1,28 @@
+.text {
+    text-align: justify;
+    text-align: right;
+    font-size: 1.75em;
+    margin-left: 50%;
+    margin-right: 0.5em;
+}
+
+@media (max-width: 768px) {
+    .text {
+        margin: 0.5em;
+        text-align: center;
+    }
+    
+    .text {
+        font-size: 1.75em;
+    }
+}
+
+@media (max-width: 480px) {
+    .text {
+        margin: 0.5em;
+    }
+}
+    
+    .text {
+        font-size: 1.75em;
+    }

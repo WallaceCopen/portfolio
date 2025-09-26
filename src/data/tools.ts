@@ -1,10 +1,16 @@
 import { IconItem } from "../components/about-section/IconList";
+import git from "../assets/git.png"
+import vite from "../../public/vite.svg"
+import vscode from "../assets/vscode.png"
+import figma from "../assets/figma.svg"
+import node from "../assets/node.png"
+import intelli from "../assets/intelli.png"
 
 export const TOOLS: IconItem[] = [
-  { label: "Git",        imgSrc: "/assets/git.png" },
-  { label: "GitHub",     imgSrc: "/assets/github.png" },
-  { label: "Vite",       imgSrc: "/assets/vite.png" },
-  { label: "VS Code",    imgSrc: "/assets/vscode.png" },
-  { label: "Figma",      imgSrc: "/assets/figma.png" },
-  { label: "Node.js",    imgSrc: "/assets/node.png" },
+  { label: "Git",     imgSrc:  git},
+  { label: "Vite",       imgSrc: vite },
+  { label: "VS Code",    imgSrc: vscode },
+  { label: "Figma",      imgSrc: figma },
+  { label: "Node.js",    imgSrc: node },
+  { label: "IntelliJ", imgSrc: intelli},
 ];
