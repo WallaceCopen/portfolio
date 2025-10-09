@@ -3,15 +3,15 @@ import React from "react";
 const font = "font-inter";
 
 export const LargeTitle = ({ children }: { children: React.ReactNode }) => (
-    <h1 className={`text-5xl font-bold ${font}`}>{children}</h1>
+    <h1 className={`text-2xl font-bold ${font}`}>{children}</h1>
 );
 
 export const Title = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-    <h2 className={`text-3xl font-semibold ${font} ${className}`}>{children}</h2>
+    <h2 className={`text-xl font-semibold ${font} ${className}`}>{children}</h2>
 );
 
 export const Subtitle = ({ children }: { children: React.ReactNode }) => (
-    <h3 className={`text-xl font-medium text-gray-600 ${font}`}>{children}</h3>
+    <h3 className={`text-lg font-medium text-gray-600 ${font}`}>{children}</h3>
 );
 
 export const Paragraph = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (

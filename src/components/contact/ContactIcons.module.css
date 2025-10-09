@@ -1,0 +1,18 @@
+.iconContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.icon {
+    width: 2.25em;
+    height: auto;
+    transition: filter 0.3s ease;
+}
+
+.icon:hover {
+    transform: scale(1.1);
+    transition: transform 0.1s;
+    cursor: pointer;
+}

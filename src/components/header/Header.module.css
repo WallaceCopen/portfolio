@@ -1,39 +1,47 @@
 .header {
     display: flex;
     flex-direction: column;
-    margin: 40px;
+    padding: 4em;
     position: relative;
     z-index: 1;
-    height: 75vh;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .title {
     margin-bottom: 0.5rem;
     color: #1a1a1a;
-    font-size: 3em;
-    font-weight: 600;
 }
 
 .subtitle {
     color: #333;
     font-weight: 300;
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 
 .downArrow {
     position: absolute;
-    bottom: -20px;
+    bottom: 3em;
     left: 50%;
-    transform: translateX(-50%);
     font-size: 2rem;
     color: #1a1a1a;
     animation: pulse 2s infinite;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
 }
 
 .downArrow:hover {
     cursor: pointer;
     color: #000;
     filter: drop-shadow(0 0 6px rgba(0, 122, 255, 0.7));
+    transform: translateX(-50%) scale(1.1);
+}
+
+.downArrow img {
+    width: 24px;
+    height: 24px;
+    display: block;
 }
 
 /* adds pulse animation keyframes */

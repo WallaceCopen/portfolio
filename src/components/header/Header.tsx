@@ -1,20 +1,22 @@
-import { Paragraph, Title } from '../general/Text';
-import GridBackground from '../general/GridBackground';
+import { LargeTitle, Title } from '../Text';
+import GridBackground from '../GridBackground';
 import styles from './Header.module.css';
-import Container from '../general/Container';
-import ContactIcons from './contact/ContactIcons';
+import Container from '../Container';
+import ContactIcons from '../contact/ContactIcons';
 import DownArrow from '../../assets/arrow-down.svg';
 
 
 const Header: React.FC = () => (
     <div className={styles.header}>
         <GridBackground />
-        <Title className={styles.title}>Wallace Copen</Title>
-        <Paragraph className={styles.subtitle}>Developer • Designer</Paragraph>
+        <LargeTitle>Wallace Copen</LargeTitle>
+        <Title className={styles.subtitle}>Developer | Designer | Prodigy</Title>
         <Container>
             <ContactIcons />
         </Container>
-        <img src={DownArrow} className={styles.downArrow} alt="Down Arrow" />
+        <a href="#about" className={styles.downArrow}>
+            <img src={DownArrow} alt="Scroll to About Section" />
+        </a>
     </div>
 );
 

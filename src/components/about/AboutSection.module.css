@@ -1,3 +1,18 @@
+.aboutSection {
+    display: flex;
+    flex-direction: column;
+    padding-top: 8em;
+    height: 100vh;
+}
+
+.biography {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20em;
+}
+
 .text {
     text-align: justify;
     text-align: right;
