@@ -1,13 +1,10 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
-
-
 const GRADIENT = 'url(#gridGradient)';
 const NUM_LINES = 5;
 const GRID_COLOR = GRADIENT;
 const BASE_ANIMATION_DURATION = 800;
 const ANIMATION_VARIANCE = 500; 
 const STAGGER = 200;
-
 
 const GridBackground: React.FC = () => {
     const [animate, setAnimate] = useState(false);
@@ -66,16 +63,20 @@ const GridBackground: React.FC = () => {
     return (
         <div
             style={{
-                position: 'fixed',
-                inset: 0,
-                zIndex: -1000,
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                zIndex: -1,
                 pointerEvents: 'none',
-                width: '100vw',
-                height: '100vh',
+                width: '100%',
+                height: '100%',
+                overflow: 'hidden',
             }}
             aria-hidden="true"
         >
-            <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ display: 'block', width: '100vw', height: '100vh' }}>
+            <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: '100%' }}>
                 {lines}
             </svg>
             
@@ -84,7 +85,7 @@ const GridBackground: React.FC = () => {
                 height="100%"
                 viewBox="0 0 100 100"
                 preserveAspectRatio="none"
-                style={{ display: 'block', width: '100vw', height: '100vh' }}
+                style={{ display: 'block', width: '100%', height: '100%' }}
             >
                 <defs>
                     <linearGradient id="gridGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -92,10 +93,8 @@ const GridBackground: React.FC = () => {
                     <stop offset="100%" stopColor="#ffffff" stopOpacity="0.2" /> {/* pure white */}
                     </linearGradient>
                 </defs>
-
                 {lines}
                 </svg>
-
         </div>
     );
 };
