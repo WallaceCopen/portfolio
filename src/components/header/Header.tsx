@@ -10,7 +10,7 @@ const Header: React.FC = () => (
     <div className={styles.header}>
         <GridBackground />
         <LargeTitle>Wallace Copen</LargeTitle>
-        <Title className={styles.subtitle}>Developer | Designer | Prodigy</Title>
+        <Title className={styles.subtitle}>Developer | Designer | Student</Title>
         <Container>
             <ContactIcons />
         </Container>

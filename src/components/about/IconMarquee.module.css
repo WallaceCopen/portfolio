@@ -21,6 +21,10 @@
   background: rgba(255, 255, 255, 0.2);
   border-color: rgba(255, 255, 255, 0.4);
   transform: translateY(-2px);
+  background: rgba(120,160,255,0.16);
+    box-shadow:
+      0 0 12px rgba(120,160,255,0.65),
+      0 0 28px rgba(120,160,255,0.35);
 }
 
 .logo {
