@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./IconMarquee.module.css";
 import Marquee from "react-fast-marquee";
 
+
 export type IconItem = {
   label: string;
   imgSrc?: string;
@@ -25,7 +26,7 @@ const IconList: React.FC<IconListProps> = ({
       <Marquee
         speed={30}
         gradient={true}
-        gradientColor={"#fff"}
+        gradientColor={"rgba(255, 255, 255, 0.04)"}
         direction={reverse ? "right" : "left"}
         pauseOnHover={true}
         loop={0} // Infinite loop

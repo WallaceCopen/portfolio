@@ -6,15 +6,34 @@
 }
 
 .icon {
-    width: 2.25em;
-    height: auto;
-    transition: filter 0.3s ease;
+  width: 2.25em;
+  height: auto;
+  color: var(--text);            /* drives stroke via currentColor */
+  stroke: currentColor;
+  fill: none;                    /* outline only */
+  stroke-width: 1.75;            /* make outlines visible */
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.2s ease, color 0.3s ease, stroke 0.3s ease, filter 0.3s ease;
+}
+
+/* Force child paths/shapes to use outline only and follow currentColor */
+.icon *,
+.icon path,
+.icon circle,
+.icon rect,
+.icon polygon,
+.icon line,
+.icon polyline {
+  fill: none !important;
+  stroke: currentColor !important;
 }
 
 .icon:hover {
-    transform: scale(1.1);
-    transition: transform 0.1s;
-    cursor: pointer;
+  transform: scale(1.1);
+  cursor: pointer;
+  color: var(--accent);          /* switches stroke color via currentColor */
+  filter: drop-shadow(0 0 8px var(--accent));
 }
 
 @media (max-width: 768px) {

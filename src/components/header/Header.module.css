@@ -1,82 +1,105 @@
 .header {
-    display: flex;
-    flex-direction: column;
-    padding: 4em;
-    position: relative;
-    z-index: 1;
-    height: 100vh;
-    overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 4em;
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
 }
 
 .title {
-    margin-bottom: 0.5rem;
-    color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  color: var(--text);
 }
 
 .subtitle {
-    color: #333;
-    font-weight: 300;
-    font-size: 1.2em;
+  color: var(--text-muted);
+  font-weight: 300;
+  font-size: 1.2em;
 }
 
+/* Arrow link container */
 .downArrow {
-    position: absolute;
-    bottom: 3em;
-    left: 50%;
-    font-size: 2rem;
-    color: #1a1a1a;
-    animation: pulse 2s infinite;
-    text-decoration: none;
-    display: block;
-    transition: all 0.3s ease;
+  position: absolute;
+  bottom: 3em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: var(--text);
+  text-decoration: none;
+  display: block;
+  transition: color 0.3s ease, filter 0.3s ease, transform 0.3s ease;
 }
 
 .downArrow:hover {
-    cursor: pointer;
-    color: #000;
-    filter: drop-shadow(0 0 6px rgba(0, 122, 255, 0.7));
-    transform: translateX(-50%) scale(1.1);
+  cursor: pointer;
+  color: var(--accent);
+  filter: drop-shadow(0 0 8px var(--accent));
+  transform: translateX(-50%) scale(1.08);
 }
 
-.downArrow img {
-    width: 24px;
-    height: 24px;
-    display: block;
+/* Arrow SVG styling */
+.downArrow img,
+.downArrow svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  transition: stroke 0.3s ease, transform 0.3s ease;
+  animation: pulse 2s infinite ease-in-out;
 }
 
-/* adds pulse animation keyframes */
+.downArrow:hover img,
+.downArrow:hover svg {
+  stroke: var(--accent);
+  filter: drop-shadow(0 0 6px var(--accent));
+}
+
+/* Ensure all intsernal SVG shapes follow the theme */
+.downArrow img *,
+.downArrow svg *,
+.downArrow img path,
+.downArrow svg path {
+  fill: none !important;
+  stroke: currentColor !important;
+}
 
 @keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.3);
-    }
-    100% {
-        transform: scale(1);
-    }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+  100% { transform: scale(1); }
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .header {
-        margin: 20px;
-        text-align: center;
-    }
-    
-    .title {
-        font-size: 2.5rem;
-    }
+  .header {
+    margin: 20px;
+    text-align: center;
+    padding: 3em; /* slightly tighter on tablets */
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
 }
 
 @media (max-width: 480px) {
-    .header {
-        margin: 15px;
-    }
-    
-    .title {
-        font-size: 2rem;
-    }
+  .header {
+    margin: 15px;
+    padding: 2em;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
 }
 
+.downArrowIcon {
+  width: 2.25em;
+  height: auto;
+}

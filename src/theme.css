@@ -1,0 +1,108 @@
+/* Global Theme Variables */
+
+/* Default: Dark mode */
+:root {
+  --bg: #0b0f1a;
+  --bg-soft: #0f1324;
+  --card: rgba(255, 255, 255, 0.01);
+  --text: #eaf0ff;
+  --text-muted: rgba(234, 240, 255, 0.75);
+  --accent: #7aa8ff;
+  --accent-2: #9fd5ff;
+  --ring: rgba(120, 160, 255, 0.65);
+  --border: rgba(255, 255, 255, 0.01);
+  --grid-opacity: 0.06;
+  --grid-start: #1c213970;
+  --grid-end: #ffffff;
+}
+
+/* Light mode overrides */
+:root[data-theme='light'] {
+  --bg: #f6f8ff;
+  --bg-soft: #ffffff;
+  --card: rgba(0, 0, 0, 0.004);
+  --text: #0b1220;
+  --text-muted: rgba(11, 18, 32, 0.7);
+  --accent: #3a6cff;
+  --accent-2: #7fb6ff;
+  --ring: rgba(58, 108, 255, 0.4);
+  --border: rgba(0, 0, 0, 0.01);
+  --grid-opacity: 0.06;
+  --grid-start: #b0b0b0;
+  --grid-end: #ffffff;
+}
+
+/* Apply background and text color globally */
+html,
+body,
+#root {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Cards and sections */
+.card,
+.section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Accent links and hover effects */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent-2);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 9999;
+  padding: 0.6rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--card) 100%, transparent),
+    color-mix(in oklab, var(--accent-2) 12%, transparent)
+  );
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  color: var(--text);
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-2);
+  box-shadow: 0 0 16px var(--ring), 0 10px 26px rgba(0, 0, 0, 0.35);
+}
+
+:root[data-theme='light'] .theme-toggle {
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--card) 100%, transparent),
+    color-mix(in oklab, var(--accent) 10%, transparent)
+  );
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+:root[data-theme='light'] .theme-toggle:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 12px var(--ring), 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Smooth color transitions on theme switch */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

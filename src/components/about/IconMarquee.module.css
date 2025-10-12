@@ -1,69 +1,77 @@
 .marqueeContainer {
   width: 100%;
-  overflow: visible;
+  overflow: visible; /* allow hover glows to extend */
+  border-radius: 0.5em;
 }
 
+/* Circular card that holds each icon + label */
 .card {
   display: flex;
+  flex-direction: column; /* stack icon above label */
   align-items: center;
   justify-content: center;
+  gap: 0.35rem;
+
   margin: 0 20px;
   padding: 18px;
-  background: rgba(255, 255, 255, 0.25);
+  background: var(--card);
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--border);
   backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
   min-width: 90px;
   min-height: 90px;
   height: auto;
-  overflow: hidden;
+  overflow: hidden; /* clip the icon within the circle */
 }
 
 .card:hover {
-  background: linear-gradient(135deg, rgba(120, 160, 255, 0.2), rgba(180, 220, 255, 0.1));
-  border-color: rgba(180, 200, 255, 0.5);
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--accent) 25%, transparent),
+    color-mix(in oklab, var(--accent-2) 15%, transparent)
+  );
+  border-color: color-mix(in oklab, var(--accent-2) 50%, var(--border));
   transform: translateY(-5px) scale(1.03);
   box-shadow:
-    0 0 15px rgba(120, 160, 255, 0.6),
-    0 0 40px rgba(120, 160, 255, 0.35),
-    inset 0 0 10px rgba(255, 255, 255, 0.1);
-  transition: all 0.4s ease;
+    0 0 15px color-mix(in oklab, var(--ring) 80%, transparent),
+    0 0 40px color-mix(in oklab, var(--ring) 50%, transparent),
+    inset 0 0 10px rgba(255, 255, 255, 0.08);
 }
 
 .logo {
-  width: 3em;
+  width: 3em;  /* adjust if you want larger */
   height: 3em;
   object-fit: contain;
-  transition: transform 0.1s ease;
+  transition: transform 0.2s ease, filter 0.2s ease;
   will-change: transform;
+  border-radius: 0.5em;
 }
 
 .card:hover .logo {
   transform: scale(1.15) rotate(3deg);
-  filter: drop-shadow(0 0 6px rgba(120, 160, 255, 0.75));
-  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 0 6px color-mix(in oklab, var(--accent) 70%, transparent));
 }
 
 .title {
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 10px;
-  color: white;
+  color: var(--text);
   text-align: center;
-}
-
-.card {
-  display: flex;
-  flex-direction: column; /* stack icon above label */
-  align-items: center;
-  justify-content: center;
 }
 
 .iconLabel {
-  margin-top: 0.4rem;
+  margin-top: 0.1rem;
   font-size: 0.85rem;
   font-weight: 500;
-  color: black;
+  color: var(--text);
+  opacity: 0.9;
   text-align: center;
+  pointer-events: none; /* keep hover on card */
+}
+
+/* Center icon rows on narrow screens */
+@media (max-width: 768px) {
+  .marqueeContainer { text-align: center; }
 }

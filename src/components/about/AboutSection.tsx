@@ -21,10 +21,10 @@ const AboutSections: React.FC= () => {
       </div>
       <div className={styles.iconGroup}>
       <Subtitle className={styles.subtitle}>Languages & Skills</Subtitle>
-      <IconList title="Skills" items={LANGUAGES_ICON_SET} />
+      <IconList items={LANGUAGES_ICON_SET} />
 
       <h3 className={styles.subtitle}>Tools & Programs</h3>
-      <IconList title="Tools / Programs" items={TOOLS_ICON_SET} reverse />
+      <IconList items={TOOLS_ICON_SET} reverse />
       </div>
       
       </div>
