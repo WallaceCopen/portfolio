@@ -21,6 +21,48 @@
     margin-right: 0.5em;
 }
 
+.aboutContent {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .aboutContent {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  .biography > .aboutContent {
+    display: flex;
+  }
+
+  .biography {
+    margin-bottom: 1rem; /* reduce this if it's larger */
+  }
+  
+  .aboutSection {
+    padding-bottom: 0; /* remove extra padding if any */
+    display: flex;
+  flex-direction: column;
+  padding-top: 8em;
+  height: 100vh;
+  padding-left: 4em;  /* new line */
+  padding-right: 4em;
+  }
+  
+  .aboutContent {
+    margin-bottom: 1.5rem; /* space between paragraph and Skills */
+  }
+
+.subtitle {
+    font-size: 1.25em;
+    
+}
+
+  
 @media (max-width: 768px) {
     .text {
         margin: 0.5em;

@@ -10,7 +10,7 @@ export const Title = ({ children, className = "" }: { children: React.ReactNode;
     <h2 className={`text-xl font-semibold ${font} ${className}`}>{children}</h2>
 );
 
-export const Subtitle = ({ children }: { children: React.ReactNode }) => (
+export const Subtitle = ({ children }: { children: React.ReactNode; className?: string }) => (
     <h3 className={`text-lg font-medium text-gray-600 ${font}`}>{children}</h3>
 );
 
