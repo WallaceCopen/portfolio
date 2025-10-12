@@ -52,3 +52,18 @@
   color: white;
   text-align: center;
 }
+
+.card {
+  display: flex;
+  flex-direction: column; /* stack icon above label */
+  align-items: center;
+  justify-content: center;
+}
+
+.iconLabel {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: black;
+  text-align: center;
+}

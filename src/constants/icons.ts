@@ -11,6 +11,7 @@ import vscode from "../assets/vscode.png"
 import figma from "../assets/figma.svg"
 import node from "../assets/node.png"
 import intelli from "../assets/intelli.png"
+import tailwind from "../assets/tailwind.png"
 
 export const LANGUAGES_ICON_SET: IconItem[] = [
     { label: "HTML",       imgSrc: html },
@@ -19,6 +20,7 @@ export const LANGUAGES_ICON_SET: IconItem[] = [
     { label: "TypeScript", imgSrc: ts },
     { label: "React",      imgSrc: reactLogo },
     { label: "Java",       imgSrc: java },
+    { label: "Tailwind CSS", imgSrc: tailwind },
 ]
 
 export const TOOLS_ICON_SET: IconItem[] = [

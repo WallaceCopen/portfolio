@@ -32,15 +32,12 @@ const IconList: React.FC<IconListProps> = ({
         autoFill
         
       >
-        {items.map((item, idx) => (
-          <div className={styles.card} key={`${item.label}-${idx}`}>
-            {item.imgSrc ? (
-              <img className={styles.logo} src={item.imgSrc} alt={item.label} />
-            ) : (
-              <div className={styles.logo}>{item.icon}</div>
-            )}
-          </div>
-        ))}
+        {items.map((item, index) => (
+  <div key={index} className={styles.card}>
+    <img src={item.imgSrc} alt={item.label} className={styles.logo} />
+    <p className={styles.iconLabel}>{item.label}</p>
+  </div>
+))}
       </Marquee>
     </div>
   );

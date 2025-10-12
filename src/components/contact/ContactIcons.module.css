@@ -16,3 +16,15 @@
     transition: transform 0.1s;
     cursor: pointer;
 }
+
+@media (max-width: 768px) {
+    .iconContainer {
+       justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .iconContainer {
+        justify-content: center;
+    }
+}
