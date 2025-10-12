@@ -6,7 +6,7 @@ import ContactIcons from '../contact/ContactIcons';
 
 
 const Header: React.FC = () => (
-    <div className={styles.header}>
+    <div id="home" className={styles.header}>
         <GridBackground />
         <LargeTitle>Wallace Copen</LargeTitle>
         <Title className={styles.subtitle}>Developer | Designer | Student</Title>
