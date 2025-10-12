@@ -89,8 +89,8 @@ const GridBackground: React.FC = () => {
             >
                 <defs>
                     <linearGradient id="gridGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#b0b0b0" stopOpacity="0.2"/>  {/* silvery gray */}
-                    <stop offset="100%" stopColor="#ffffff" stopOpacity="0.2" /> {/* pure white */}
+                    <stop offset="0%" stopColor="var(--grid-start)" stopOpacity="var(--grid-opacity)"/>  {/* silvery gray */}
+                    <stop offset="100%" stopColor="var(--grid-end)" stopOpacity="var(--grid-opacity)" /> {/* pure white */}
                     </linearGradient>
                 </defs>
                 {lines}
