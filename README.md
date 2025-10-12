@@ -7,7 +7,7 @@ It’s designed to be fast, accessible, and easy to maintain, while showcasing m
 
 # Future Improvements
 
-* Dark mode toggle
+* ~~ Dark mode toggle ~~
 
 * More Colors Possibly
 
