@@ -9,6 +9,7 @@ import html from "../assets/html.png";
 
 import hellenic from "../assets/hellenic.png";
 import calculator from "../assets/calculator.png";
+import logo from "../../public/favicon.png"
 
 export interface Technology {
   name: string;
@@ -34,7 +35,7 @@ export const PROJECTS: Project[] = [
     id: 1,
     title: "Portfolio Website",
     description: "A modern, responsive portfolio built with React and TypeScript featuring dark mode, smooth animations, and glassmorphism design.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
+    image: logo,
     technologies: [
       { name: "React", logo: react, website: "https://react.dev" },
       { name: "TypeScript", logo: ts, website: "https://www.typescriptlang.org" },
@@ -44,7 +45,7 @@ export const PROJECTS: Project[] = [
     ],
     date: "October 2024",
     github: "https://github.com/WallaceCopen/portfolio",
-    demo: "https://367323c7.portfolio-97p.pages.dev/",
+    demo: "https://portfolio-97p.pages.dev/",
     about: "#about",
     featured: true
   },
