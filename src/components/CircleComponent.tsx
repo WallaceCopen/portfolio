@@ -31,7 +31,7 @@ const CircleComponent: React.FC<CircleComponentProps> = ({
       {link ? (
         <a
           href={link}
-          target="_blank"
+          //target=_blank
           rel="noopener noreferrer"
           className={styles.circleLink}
           aria-label={alt}

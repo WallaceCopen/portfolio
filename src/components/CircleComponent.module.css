@@ -1,17 +1,4 @@
 
-.circleLink {
-  display: inline-block;
-  border-radius: 50%;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform .25s ease, box-shadow .25s ease;
-  outline: none;
-
-  /* 🔧 Make sure nothing blocks clicks */
-  position: relative;
-  z-index: 5;                  
-  pointer-events: auto;        
-}
 
 .circleWrapper {
   display: flex;
