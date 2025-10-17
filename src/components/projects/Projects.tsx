@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './Projects.module.css';
 import { PROJECTS, Project } from '../../constants/projects';
 
-// Project Card Component
+// Project Card Component 
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
@@ -150,7 +150,7 @@ const ProjectsSection: React.FC = () => {
             active={filter === 'featured'} 
             onClick={() => setFilter('featured')}
           />
-          {allTechnologies.slice(0, 4).map((tech) => (
+           {allTechnologies.slice(0, 0).map((tech) => (
             <FilterButton 
               key={tech}
               label={tech} 

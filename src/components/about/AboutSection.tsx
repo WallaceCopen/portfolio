@@ -14,7 +14,7 @@ const AboutSections: React.FC= () => {
         <div className={styles.aboutContent}>
           <CircleComponent src={profileImg} size={250} link='#about' />
           <Paragraph>
-          Hi! I’m Wallace Copen, a high school student from Los Angeles with a deep passion for technology, design, and creative problem-solving. I specialize in modern web development, using tools like React, TypeScript, and Tailwind CSS to build clean, responsive, and visually engaging user experiences. I’m constantly learning and experimenting — from crafting sleek UI components to exploring the intersection of software, art, and functionality.
+          Hi! I’m Wallace Copen, a high school student from Los Angeles who has been learning computer science for 4+ years, with a deep passion for technology, design, and creative problem-solving. I specialize in modern web development, using tools like React, TypeScript, and Tailwind CSS to build clean, responsive, and visually engaging user experiences. I’m constantly learning and experimenting.
           </Paragraph>
           
         </div>
