@@ -1,85 +1,110 @@
+/* ========== Layout: About Section ========== */
 .aboutSection {
-    display: flex;
-    flex-direction: column;
-    padding-top: 8em;
-    height: 100vh;
-}
-
-.biography {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20em;
-}
-
-.text {
-    text-align: justify;
-    text-align: right;
-    font-size: 1.75em;
-    margin-left: 50%;
-    margin-right: 0.5em;
-}
-
-.aboutContent {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  @media (max-width: 768px) {
-    .aboutContent {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-  }
-
-  .biography > .aboutContent {
-    display: flex;
-  }
-
-  .biography {
-    margin-bottom: 1rem; /* reduce this if it's larger */
-  }
-  
-  .aboutSection {
-    padding-bottom: 0; /* remove extra padding if any */
-    display: flex;
+  position: relative;        /* enables z-index */
+  z-index: 1;
+  display: flex;
   flex-direction: column;
   padding-top: 8em;
-  height: 100vh;
-  padding-left: 4em;  /* new line */
+  padding-left: 4em;
   padding-right: 4em;
-  }
-  
-  .aboutContent {
-    margin-bottom: 1.5rem; /* space between paragraph and Skills */
-  }
-
-.subtitle {
-    font-size: 1.25em;
-    
+  padding-bottom: 0;
+  height: 100vh;
+  box-sizing: border-box;
 }
 
-  
+/* Top block (avatar + intro text) sits above icon rows */
+.biography {
+  position: relative;        /* enables z-index */
+  z-index: 5;                /* above any marquee/gradients below */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;     /* space before icon groups */
+}
+
+/* Wrapper for the two marquee rows to keep them under the bio stack */
+.iconGroup {
+  position: relative;
+  z-index: 1;                /* below .biography so it never overlays the avatar */
+}
+
+/* ========== Content Row: Avatar + Paragraph ========== */
+.aboutContent {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;     /* space below paragraph before Skills */
+}
+
+/* Optional longform text style (used by your <Paragraph/>) */
+.text {
+  color: var(--text, #eaeaea);
+  font-size: 1.75em;
+  line-height: 1.4;
+  text-align: left;
+  margin: 0;                 /* let parent control spacing */
+  max-width: 62ch;
+}
+
+/* Subtitle above each marquee row */
+.subtitle {
+  font-size: 1.25em;
+  font-weight: 600;
+  color: var(--text, #eaeaea);
+  margin: 0.25rem 0 0.75rem;
+  letter-spacing: 0.2px;
+  text-wrap: balance;
+}
+
+/* ========== CircleComponent click safety (local overrides) ========== */
+/* These ensure the avatar link is always clickable even if a sibling has overlays */
+:global(.circleWrapper) {
+  position: relative;
+  z-index: 10;               /* above the marquee rows */
+}
+
+:global(.circleLink) {
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;      /* ensure the <a> receives the click */
+}
+
+:global(.circleImage) {
+  pointer-events: none;      /* clicks bubble to the <a> */
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 1024px) {
+  .aboutSection {
+    padding-left: 3em;
+    padding-right: 3em;
+  }
+}
+
 @media (max-width: 768px) {
-    .text {
-        margin: 0.5em;
-        text-align: center;
-    }
-    
-    .text {
-        font-size: 1.75em;
-    }
+  .aboutSection {
+    height: auto;            /* allow content to grow on small screens */
+    padding-left: 1.25em;
+    padding-right: 1.25em;
+  }
+
+  .aboutContent {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .text {
+    font-size: 1.4em;
+    text-align: center;
+    max-width: 48ch;
+  }
 }
 
 @media (max-width: 480px) {
-    .text {
-        margin: 0.5em;
-    }
+  .text {
+    font-size: 1.25em;
+    max-width: 44ch;
+  }
 }
-    
-    .text {
-        font-size: 1.75em;
-    }

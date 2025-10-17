@@ -4,7 +4,7 @@
 :root {
   --bg: #0b0f1a;
   --bg-soft: #0f1324;
-  --card: rgba(255, 255, 255, 0.01);
+  --card: rgba(255, 255, 255, 0.03);
   --text: #eaf0ff;
   --text-muted: rgba(234, 240, 255, 0.75);
   --accent: #7aa8ff;

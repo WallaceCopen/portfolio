@@ -2,6 +2,7 @@ import Navbar from "./components/navbar/Navbar"
 import Header from "./components/header/Header"
 import Container from "./components/Container"
 import AboutSection from "./components/about/AboutSection";
+import ProjectsSection from "./components/projects/Projects";
 import React, { useEffect, useState } from 'react';
 import './theme.css';
 
@@ -32,6 +33,7 @@ const App: React.FC = () => {
         <Navbar />
         <Header />
         <AboutSection />
+        <ProjectsSection />
       </Container>
     </>
   );

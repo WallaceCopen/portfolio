@@ -2,6 +2,29 @@
   width: 100%;
   overflow: visible; /* allow hover glows to extend */
   border-radius: 0.5em;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* --- Make the whole card clickable & accessible --- */
+.cardLink {
+  display: inline-flex;            /* keep each card's layout */
+  text-decoration: none;           /* inherit text color; no underline */
+  color: inherit;
+  margin: 0 20px;                  /* move margin from .card -> link so focus ring isn't clipped */
+  border-radius: 9999px;           /* ensure rounded focus outline */
+  outline: none;
+}
+
+.cardLink:focus-visible .card {
+  /* theme-aware focus ring */
+  box-shadow:
+    0 0 0 2px color-mix(in oklab, var(--background, #0b0b0b) 100%, transparent),
+    0 0 0 4px color-mix(in oklab, var(--ring) 70%, transparent);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.cardLink:active .card {
+  transform: translateY(-2px) scale(0.99);
 }
 
 /* Circular card that holds each icon + label */
@@ -12,17 +35,24 @@
   justify-content: center;
   gap: 0.35rem;
 
-  margin: 0 20px;
+  /* margin removed (now on .cardLink) */
   padding: 18px;
   background: var(--card);
   border-radius: 50%;
   border: 1px solid var(--border);
   backdrop-filter: blur(10px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    filter 0.3s ease;
   min-width: 90px;
   min-height: 90px;
   height: auto;
   overflow: hidden; /* clip the icon within the circle */
+  user-select: none;
+  will-change: transform, box-shadow;
 }
 
 .card:hover {
@@ -40,10 +70,11 @@
 }
 
 .logo {
-  width: 3em;  /* adjust if you want larger */
+  width: 3em;
   height: 3em;
   object-fit: contain;
-  transition: transform 0.2s ease, filter 0.2s ease;
+  image-rendering: -webkit-optimize-contrast;
+  transition: transform 0.2s ease, filter 0.2s ease, opacity 0.2s ease;
   will-change: transform;
   border-radius: 0.5em;
 }
@@ -68,10 +99,25 @@
   color: var(--text);
   opacity: 0.9;
   text-align: center;
-  pointer-events: none; /* keep hover on card */
+  pointer-events: none; /* child clicks pass through to the link */
+}
+
+/* Prefer-reduced-motion support */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .logo {
+    transition: none !important;
+  }
+  .card:hover,
+  .cardLink:focus-visible .card {
+    transform: none !important;
+    box-shadow: none !important;
+  }
 }
 
 /* Center icon rows on narrow screens */
 @media (max-width: 768px) {
   .marqueeContainer { text-align: center; }
+  .cardLink { margin: 0 14px; }
+  .card { min-width: 80px; min-height: 80px; padding: 14px; }
 }
