@@ -12,6 +12,7 @@ import figma from "../assets/figma.svg";
 import node from "../assets/node.png";
 import intelli from "../assets/intelli.png";
 import tailwind from "../assets/tailwind.png";
+import python from "../assets/python.png"
 
 export const LANGUAGES_ICON_SET: IconItem[] = [
   { label: "HTML", imgSrc: html, link: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
@@ -21,6 +22,7 @@ export const LANGUAGES_ICON_SET: IconItem[] = [
   { label: "React", imgSrc: reactLogo, link: "https://react.dev/" },
   { label: "Java", imgSrc: java, link: "https://www.java.com/" },
   { label: "Tailwind CSS", imgSrc: tailwind, link: "https://tailwindcss.com/" },
+  { label: "Python", imgSrc: python, link: "https://python.org"}
 ];
 
 export const TOOLS_ICON_SET: IconItem[] = [

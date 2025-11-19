@@ -8,8 +8,9 @@
   padding-left: 4em;
   padding-right: 4em;
   padding-bottom: 0;
-  height: 100vh;
+  min-height: 100vh;
   box-sizing: border-box;
+  overflow: visible;
 }
 
 /* Top block (avatar + intro text) sits above icon rows */
@@ -27,6 +28,7 @@
 .iconGroup {
   position: relative;
   z-index: 1;                /* below .biography so it never overlays the avatar */
+  overflow: visible;
 }
 
 /* ========== Content Row: Avatar + Paragraph ========== */
