@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Projects.module.css';
 import { PROJECTS, Project } from '../../constants/projects';
+import { Link } from "react-router-dom"
 
 // Project Card Component 
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
@@ -53,12 +54,11 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
               </a>
             )}
             {project.about && (
-                <a
-                  href={project.about}
-                  rel='noopener noreferrer'
-                    className={styles.projectLink}>
-                      
-                  Learn More</a>
+                <Link className={styles.projectLink} preventScrollReset={false} to={`/about/${project.id}`}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>About</Link>
             )}
           </div>
         </div>
