@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "../Text";
 import styles from "./Navbar.module.css";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 
@@ -17,22 +16,39 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    // When on the home page, respond to hash changes by scrolling to sections
+    if (location.pathname === "/") {
+      const hash = location.hash;
+      if (hash) {
+        const id = hash.replace('#', '');
+        const target = document.getElementById(id);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }
+  }, [location]);
+
   return (
     <nav className={`${styles.Navbar} ${isScrolled ? styles.scrolled : ''}`}>
-      <RouterLink
-        to="/"
-        className={styles.routerHomeLink}
-        onClick={(e) => {
-          if (location.pathname === "/") {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }
-        }}
-      >
-        Home
-      </RouterLink>
-      <Link href="#about">About</Link>
-      <Link href="#projects">Projects</Link>
+      <div  className="NavbarLink">
+        <RouterLink
+          to="/"
+          className={styles.routerHomeLink}
+          onClick={(e) => {
+            if (location.pathname === "/") {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+        >
+          Home
+        </RouterLink>
+        <RouterLink to="/#about" className={styles.routerHomeLink}>About</RouterLink>
+        <RouterLink to="/#projects" className={styles.routerHomeLink}>Projects</RouterLink>
+      </div>
+      
     </nav>
   );
 };

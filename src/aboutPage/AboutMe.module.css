@@ -1,0 +1,235 @@
+.aboutMePage {
+  max-width: 60rem; /* ~960px */
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+@media (min-width: 64rem) {
+  .aboutMePage {
+    padding: 6rem 0 5rem;
+  }
+}
+
+.aboutMeHeader {
+  margin-bottom: 2.5rem;
+}
+
+.aboutMeHeader p {
+  margin-top: 0.75rem;
+  max-width: 40rem;
+  opacity: 0.85;
+}
+
+/* Two-column card layout */
+.aboutMeGrid {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 56.25rem) {
+  .aboutMeGrid {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+    align-items: flex-start;
+  }
+}
+
+.aboutMeCard {
+  border-radius: 1.5rem;
+  padding: 1.5rem 1.6rem;
+  background: color-mix(in oklab, var(--card) 85%, transparent);
+  box-shadow:
+    0 0.75rem 2rem rgba(0, 0, 0, 0.35),
+    inset 0 0 0.5rem rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(0.75rem) saturate(140%);
+  -webkit-backdrop-filter: blur(0.75rem) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  transition:
+    transform 160ms ease-out,
+    box-shadow 160ms ease-out,
+    border-color 160ms ease-out,
+    background 160ms ease-out;
+}
+
+.aboutMeCard:hover {
+  transform: translateY(-0.15rem);
+  border-color: color-mix(in oklab, var(--accent) 45%, var(--border));
+  box-shadow:
+    0 1rem 2.5rem rgba(0, 0, 0, 0.5),
+    0 0 0 1px color-mix(in oklab, var(--accent) 35%, transparent);
+}
+/* Card headings & lists */
+.aboutMeCardTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.9rem;
+}
+
+.aboutMeList {
+  list-style: disc;
+  margin: 0.25rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.aboutMeList li {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin-bottom: 0.4rem;
+}
+
+/* Timeline section */
+.aboutMeTimelineSection {
+  margin-top: 1rem;
+}
+
+.aboutMeSectionTitle {
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-bottom: 1.25rem;
+}
+
+.aboutMeTimeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 0 0 2rem 0;
+}
+
+.aboutMeTimeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 0.125rem;
+  transform: translateX(-50%);
+  background: color-mix(in oklab, var(--border) 85%, var(--background) 20%);
+  opacity: 0.9;
+  z-index: 0;
+}
+
+.aboutMeTimelineItem {
+  position: relative;
+  z-index: 1;
+  width: 50%;
+  padding: 0.75rem 1.5rem;
+  border-radius: 1rem;
+  background: color-mix(in oklab, var(--card) 88%, transparent);
+  box-shadow:
+    0 0.75rem 2rem rgba(0, 0, 0, 0.35),
+    inset 0 0 0.5rem rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(0.75rem) saturate(140%);
+  -webkit-backdrop-filter: blur(0.75rem) saturate(140%);
+}
+
+.aboutMeTimelineItem:hover {
+  box-shadow:
+    0 1rem 2.5rem rgba(0, 0, 0, 0.45),
+    inset 0 0 0.7rem rgba(255, 255, 255, 0.05);
+}
+
+.aboutMeTimelineItem:nth-child(odd) {
+  align-self: flex-start;
+  text-align: right;
+  padding-right: 2rem;
+}
+
+.aboutMeTimelineItem:nth-child(even) {
+  align-self: flex-end;
+  text-align: left;
+  padding-left: 2rem;
+}
+
+.aboutMeTimelineItem::before {
+  content: "";
+  position: absolute;
+  top: 1rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--accent) 80%, var(--background) 40%);
+  box-shadow: 0 0 0 0.08rem color-mix(in oklab, var(--background) 80%, transparent);
+}
+
+/* energy connector that extends from the center line into the card on hover */
+.aboutMeTimelineItem::after {
+  content: "";
+  position: absolute;
+  top: 1.05rem;
+  height: 0.08rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    color-mix(in oklab, var(--accent) 80%, transparent),
+    color-mix(in oklab, var(--accent) 30%, transparent)
+  );
+  opacity: 0;
+  transform-origin: center;
+  transition:
+    width 200ms ease-out,
+    opacity 200ms ease-out;
+  z-index: 2;
+}
+
+.aboutMeTimelineItem:nth-child(odd)::before {
+  right: -0.3rem;
+}
+
+.aboutMeTimelineItem:nth-child(even)::before {
+  left: -0.3rem;
+}
+
+.aboutMeTimelineItem:nth-child(odd)::after {
+  right: -0.3rem;
+  width: 0;
+}
+
+.aboutMeTimelineItem:nth-child(even)::after {
+  left: -0.3rem;
+  width: 0;
+}
+
+.aboutMeTimelineItem:nth-child(odd):hover::after {
+  opacity: 1;
+  width: 1.4rem;
+}
+
+.aboutMeTimelineItem:nth-child(even):hover::after {
+  opacity: 1;
+  width: 1.4rem;
+}
+
+.aboutMeTimelineDate {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-bottom: 0.15rem;
+}
+
+.aboutMeTimelineLabel {
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+  font-size: 0.95rem;
+}
+
+.aboutMeTimelineDescription {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+@keyframes timelineEnergy {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}

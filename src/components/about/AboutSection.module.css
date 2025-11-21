@@ -59,6 +59,29 @@
   text-wrap: balance;
 }
 
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers below the circle image */
+  text-align: center;
+}
+
+.profile > *:not(:first-child) {
+  transform: translateX(-0.75rem); /* shift only the text left */
+}
+
+.profile a {
+  display: inline-block;
+  color: var(--text);
+}
+
+.profile a:hover {
+  color: color-mix(in oklab, var(--accent, #6ea8ff) 70%, var(--text, #ffffff));
+  text-shadow:
+    0 0 8px color-mix(in oklab, var(--accent, #6ea8ff) 70%, transparent),
+    0 0 16px color-mix(in oklab, var(--accent, #6ea8ff) 40%, transparent);
+}
+
 /* ========== CircleComponent click safety (local overrides) ========== */
 /* These ensure the avatar link is always clickable even if a sibling has overlays */
 :global(.circleWrapper) {
@@ -103,6 +126,7 @@
     max-width: 48ch;
   }
 }
+
 
 @media (max-width: 480px) {
   .text {

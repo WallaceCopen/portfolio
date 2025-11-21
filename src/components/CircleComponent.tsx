@@ -1,16 +1,18 @@
 import React from 'react';
 import styles from './CircleComponent.module.css';
+import { Link } from 'react-router-dom';
 
 interface CircleComponentProps {
   src: string;
   alt?: string;
   size?: number;
   link?: string;
+  className?: string;
 }
 
 const CircleComponent: React.FC<CircleComponentProps> = ({
   src,
-  alt = 'Profile picture',
+  alt = 'Learn More',
   size = 150,
   link
 }) => {
@@ -29,16 +31,15 @@ const CircleComponent: React.FC<CircleComponentProps> = ({
   return (
     <div className={styles.circleWrapper}>
       {link ? (
-        <a
-          href={link}
-          //target=_blank
-          rel="noopener noreferrer"
+        <Link
+          to={link}
+          preventScrollReset={true}
           className={styles.circleLink}
           aria-label={alt}
           title={alt}
         >
           {img}
-        </a>
+        </Link>
       ) : (
         img
       )}

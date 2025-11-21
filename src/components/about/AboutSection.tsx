@@ -5,6 +5,7 @@ import styles from "./AboutSection.module.css";
 import { LargeTitle, Paragraph, Subtitle} from "../Text";
 import CircleComponent from "../CircleComponent";
 import profileImg from "../../assets/profile.jpeg";
+import { Link } from "react-router-dom";
 
 const AboutSections: React.FC= () => {
   return (
@@ -12,7 +13,13 @@ const AboutSections: React.FC= () => {
       <div className={styles.biography}>
         <LargeTitle>Who Am I?</LargeTitle>
         <div className={styles.aboutContent}>
-          <CircleComponent src={profileImg} size={250} link='#about' />
+          <div className={styles.profile}>
+            <CircleComponent className={styles.circleImage} src={profileImg} size={250} link='/about' />
+            <Link to='/about'>
+              <Paragraph>Learn More</Paragraph>
+            </Link>
+          </div>
+          
           <Paragraph>
           Hi! I’m Wallace Copen, a high school student from Los Angeles who has been learning computer science for 4+ years, with a love for technology, design, and creative problem-solving. I like to program stuff from websites to cyber security tools, using things like Python or React to make useful and in some cases visually engaging websites and programs. I’m constantly learning and experimenting.
           </Paragraph>
