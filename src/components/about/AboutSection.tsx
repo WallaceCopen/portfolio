@@ -16,12 +16,11 @@ const AboutSections: React.FC= () => {
           <div className={styles.profile}>
             <CircleComponent className={styles.circleImage} src={profileImg} size={250} link='/about' />
             <Link to='/about'>
-              <Paragraph>Learn More</Paragraph>
             </Link>
           </div>
           
           <Paragraph>
-          Hi! I’m Wallace Copen, a high school student from Los Angeles who has been learning computer science for 4+ years, with a love for technology, design, and creative problem-solving. I like to program stuff from websites to cyber security tools, using things like Python or React to make useful and in some cases visually engaging websites and programs. I’m constantly learning and experimenting.
+          Hi! I’m Wallace Copen, a high school student from Los Angeles who has been learning computer science for 4+ years, with a love for technology, design, and creative problem-solving. I like to program stuff from websites to cyber security tools, using things like Python or React to make useful and in some cases visually engaging websites and programs. I’m constantly learning and experimenting. Click my profile photo to learn more!
           </Paragraph>
           
         </div>

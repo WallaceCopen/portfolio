@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/navbar/Navbar";
+import Navbar from "../../components/navbar/Navbar";
 import styles from "./AboutMe.module.css";
-import { LargeTitle, Subtitle, Paragraph } from "../components/Text";
+import { LargeTitle, Subtitle, Paragraph } from "../../components/Text";
 
 type Theme = "light" | "dark";
 

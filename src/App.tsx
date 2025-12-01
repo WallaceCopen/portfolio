@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes,  Route} from "react-router-dom";
-import Home from './components/HomePage';
-import About from './aboutPage/About';
-import AboutMe from './aboutPage/AboutMe'
+import Home from './routes/HomePage';
+import About from './routes/aboutPage/About';
+import AboutMe from './routes/aboutPage/AboutMe'
 
 const App: React.FC = () => {
     return (
@@ -11,6 +11,7 @@ const App: React.FC = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<AboutMe />} />
                     <Route path="/about/:projectId" element={<About />} />
+                    {/* <Route path="/stem" element={<Stemm />} /> Future Edition for School */}
                 </Routes>
             </Router>
         </>

@@ -1,5 +1,5 @@
 .aboutMePage {
-  max-width: 60rem; /* ~960px */
+  max-width: 90rem; /* ~960px */
   margin: 0 auto;
   padding: 2rem 1.5rem 4rem;
 }
@@ -29,8 +29,8 @@
 
 @media (min-width: 56.25rem) {
   .aboutMeGrid {
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
-    align-items: flex-start;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
   }
 }
 
@@ -49,6 +49,9 @@
     box-shadow 160ms ease-out,
     border-color 160ms ease-out,
     background 160ms ease-out;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .aboutMeCard:hover {
@@ -220,6 +223,14 @@
   font-size: 0.92rem;
   line-height: 1.5;
   opacity: 0.9;
+}
+
+.aboutMeCardPrimary {
+  height: 100%;
+}
+
+.aboutMeCardSecondary {
+  height: 100%;
 }
 
 @keyframes timelineEnergy {
