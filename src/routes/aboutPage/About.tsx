@@ -14,7 +14,7 @@ const PROJECT_ABOUT_CONTENT: Record<
     timeline?: { date: string; label: string; description: string }[];
   }
 > = {
-  "1": {
+  "portfolio": {
     title: "Portfolio Website",
     subtitle: "A personal portfolio to showcase all my work.",
     body: "This portfolio is where I display all my work. I made it with react and typescript. I wanted it to be more dynamic and exciting than my earlier websites.",
@@ -42,7 +42,7 @@ const PROJECT_ABOUT_CONTENT: Record<
       }
     ]
   },
-  "2": {
+  "climbing-website": {
     title: "Climbing Website",
     subtitle: "A fun, personal project about my love for rock climbing.",
     body: "A fun little website I made in HTML and CSS about my passion for climbing. It includes useful info about the sport and what you need to get started.",
@@ -64,7 +64,7 @@ const PROJECT_ABOUT_CONTENT: Record<
       }
     ]
   },
-  "3": {
+  "hellenic": {
     title: "Hellenic Mod",
     subtitle: "A Minecraft mod exploring Greek mythology and destiny.",
     body: "Hellenic is a long-term Minecraft mod project focused on Greek mythology—gods, artifacts, abilities, and worldbuilding. I’m using it to push myself deeper into modding concepts like custom systems, registries, spell mechanics, and game balance. The goal is to create something that feels cohesive and atmospheric, not just a random collection of items. It’s also a great playground for experimenting with design ideas like progression trees, themed biomes, and unique playstyles tied to different deities.",
@@ -91,7 +91,7 @@ const PROJECT_ABOUT_CONTENT: Record<
       }
     ]
   },
-  "4": {
+  "calculator": {
     title: "Java Console Calculator",
     subtitle: "A foundational project to practice Java logic and structure.",
     body: "The calculator is a simple console-based Java app, but it represents an important step in my programming journey. I used it to practice core concepts like control flow, user input, functions, and clean, readable code. Even though the project is small, it helped solidify my understanding of how to structure programs, handle edge cases, and think about future improvements like adding a GUI, history of operations, or more advanced functions.",

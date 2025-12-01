@@ -41,6 +41,7 @@
   
   .timelineSection {
     margin-top: 2rem;
+    padding-bottom: 1em;
   }
   
   .timeline {
@@ -81,8 +82,3 @@
     font-size: 0.95rem;
     line-height: 1.5;
   }
-
-.backLink {
-    translate: -0.25rem 0;
-  }
-  

@@ -18,8 +18,7 @@ export interface Technology {
 }
 
 export interface Project {
-  id: number;
-  slug: string;
+  id: string;
   
   title: string;
   description: string;
@@ -35,8 +34,7 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    id: 1,
-    slug: "portfolio",
+    id: "portfolio",
     title: "Portfolio Website",
     description: "A modern, responsive portfolio built with React and TypeScript featuring dark mode, smooth animations, and glassmorphism design.",
     image: logo,
@@ -55,8 +53,7 @@ export const PROJECTS: Project[] = [
     aboutRoute: "/about/portfolio"
   },
   {
-    id: 2,
-    slug: "climbing-website",
+    id: "climbing-website",
     title: "Climbing Website",
     description: "A website I made for fun about rock climbing.",
     image: "https://images.unsplash.com/photo-1522163182402-834f871fd851?w=800&h=500&fit=crop",
@@ -72,8 +69,7 @@ export const PROJECTS: Project[] = [
     aboutRoute: "/about/climbing-website"
   },
   {
-    id: 3,
-    slug: "hellenic",
+    id: "hellenic",
     title: "Hellenic",
     description: "A minecraft mod I am working on about greek mythology.",
     image: hellenic,
@@ -87,8 +83,7 @@ export const PROJECTS: Project[] = [
     featured: true
   },
   {
-    id: 4,
-    slug: "calculator",
+    id: "calculator",
     title: "Calculator",
     description: "A in console calculator app I made using java.",
     image: calculator,
