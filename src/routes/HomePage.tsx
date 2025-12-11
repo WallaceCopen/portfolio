@@ -1,4 +1,4 @@
-import Navbar from "../components/navbar/Navbar"
+
 import Header from "../components/header/Header"
 import Container from "../components/Container"
 import AboutSection from "../components/about/AboutSection";
@@ -30,7 +30,6 @@ const HomePage: React.FC = () => {
         {theme === 'dark' ? '🌙' : '☀️'}
       </button>
       <Container>
-        <Navbar />
         <Header />
         <AboutSection />
         <ProjectsSection />

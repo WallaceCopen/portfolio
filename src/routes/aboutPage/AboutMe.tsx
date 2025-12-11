@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../components/navbar/Navbar";
 import styles from "./AboutMe.module.css";
 import { LargeTitle, Subtitle, Paragraph } from "../../components/Text";
 
@@ -114,8 +113,6 @@ const AboutMe: React.FC = () => {
       >
         {theme === "dark" ? "🌙" : "☀️"}
       </button>
-
-      <Navbar />
 
       <main className={styles.aboutMePage}>
         <header className={styles.aboutMeHeader}>

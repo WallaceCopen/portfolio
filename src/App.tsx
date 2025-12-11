@@ -3,11 +3,14 @@ import Home from './routes/HomePage';
 import About from './routes/aboutPage/About';
 import AboutMe from './routes/aboutPage/AboutMe'
 import Cookie from './routes/CookieClicker';
+import Navbar from "./components/navbar/Navbar";
 
 const App: React.FC = () => {
     return (
         <>
+            
             <Router>
+                <Navbar />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<AboutMe />} />

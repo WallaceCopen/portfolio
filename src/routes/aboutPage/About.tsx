@@ -1,4 +1,4 @@
-import Navbar from "../../components/navbar/Navbar"
+
 import React, { useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 import styles from "./About.module.css";
@@ -147,7 +147,6 @@ const About: React.FC = () => {
         <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle dark mode">
           {theme === 'dark' ? '🌙' : '☀️'}
         </button>
-        <Navbar />
         <div className={styles.aboutContainer}>
           {projectContent ? (
             <>

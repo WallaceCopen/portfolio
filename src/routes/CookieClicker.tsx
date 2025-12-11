@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from "react";
 
 const embeddedStyles = `
+html, body, #root {
+  min-height: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
 .secret-cookie-page {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  min-height: calc(100vh - 5rem);  /* fill screen minus navbar height */
+  padding-top: 5rem;               /* space for navbar */
+  padding-bottom: 0;
   background: radial-gradient(circle at top, #fef3c7, #0f172a);
+  display: flex;
+  justify-content: center;
+  align-items: center;             /* vertically center the card in remaining space */
 }
 
 .cookie-card {
-  max-width: 480px;
+  max-width: 500px;
   width: 100%;
   padding: 2rem;
   border-radius: 1.5rem;
@@ -20,6 +27,7 @@ const embeddedStyles = `
   box-shadow: 0 20px 40px rgba(15, 23, 42, 0.6);
   text-align: center;
   color: #e5e7eb;
+  margin: 0 auto; /* center the card without flex */
 }
 
 .cookie-card h1 {
@@ -137,10 +145,10 @@ const SecretCookie: React.FC = () => {
   };
 
   return (
-    <div className="secret-cookie-page">
+    <>
       <style>{embeddedStyles}</style>
-
-      <div className="cookie-card">
+      <div className="secret-cookie-page">
+        <div className="cookie-card">
         <h1>🍪 Secret Cookie Lab</h1>
 
         <p className="cookie-count">
@@ -178,15 +186,14 @@ const SecretCookie: React.FC = () => {
           </button>
         </div>
 
-        <p className="hint">
-          For Sawyer and other Cookie People
-        </p>
+        <p className="hint">For Sawyer and other Cookie People</p>
 
         <p className="external-link" onClick={openOfficial}>
           Or open the official Cookie Clicker in a new tab →
         </p>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
