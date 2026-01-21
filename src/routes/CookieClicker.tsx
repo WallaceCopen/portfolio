@@ -184,6 +184,8 @@ const SecretCookie: React.FC = () => {
           >
             Buy Auto-Clicker (+1 / sec) — Cost: {autoClickerCost}
           </button>
+
+    
         </div>
 
         <p className="hint">For Sawyer and other Cookie People</p>

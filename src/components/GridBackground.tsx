@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 const GRADIENT = 'url(#gridGradient)';
-const NUM_LINES = 5;
+const NUM_LINES = 7;
 const GRID_COLOR = GRADIENT;
 const BASE_ANIMATION_DURATION = 800;
 const ANIMATION_VARIANCE = 500; 

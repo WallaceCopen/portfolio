@@ -6,10 +6,12 @@ import tailwind from "../assets/tailwind.png";
 import js from "../assets/javascript.png";
 import java from "../assets/java.png";
 import html from "../assets/html.png";
+import python from "../assets/python.png";
 
 import hellenic from "../assets/hellenic.png";
 import calculator from "../assets/calculator.png";
 import logo from "../../public/favicon.png"
+import userevents from "../assets/userevents.png"
 
 export interface Technology {
   name: string;
@@ -22,7 +24,7 @@ export interface Project {
   
   title: string;
   description: string;
-  image: string;
+  image?: string;
   technologies: Technology[];
   date: string;
   github?: string;
@@ -95,5 +97,18 @@ export const PROJECTS: Project[] = [
     featured: false,
     about: true,
     aboutRoute: "/about/calculator"
+  }, 
+  {
+    id: "gituserevents",
+    title: "Github User Events",
+    image: userevents,
+    description: "A CLI tool used to fetch latest events of a github user",
+    technologies: [
+      {name: "Python", logo: python, website: "https://python.org" },
+    ],
+    date: "December 2026",
+    github: "https://github.com/WallaceCopen/gituserevents",
+    about: true,
+    aboutRoute: "/about/gituserevents"
   }
 ];

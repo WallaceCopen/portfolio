@@ -4,51 +4,84 @@ import { Link as RouterLink, useLocation } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeHash, setActiveHash] = useState("#home"); // Default to home
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 0);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 0);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
-    // When on the home page, respond to hash changes by scrolling to sections
+    const sectionIds = ["home", "about", "projects"];
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveHash(`#${entry.target.id}`);
+          }
+        });
+      },
+      { 
+        rootMargin: "-20% 0px -40% 0px", 
+        threshold: 0.1 
+      }
+    );
+  
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+  
+    return () => observer.disconnect();
+  }, [location.pathname]);
+  
+  const handleNavLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
     if (location.pathname === "/") {
-      const hash = location.hash;
-      if (hash) {
-        const id = hash.replace('#', '');
-        const target = document.getElementById(id);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+      e.preventDefault();
+      const id = hash.replace("#", "");
+      const element = document.getElementById(id);
+
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        window.history.pushState(null, "", hash);
+        setActiveHash(hash);
       }
     }
-  }, [location]);
+  };
 
   return (
     <nav className={`${styles.Navbar} ${isScrolled ? styles.scrolled : ''}`}>
-      <div  className="NavbarLink">
+      <div className={styles.navLinks}>
         <RouterLink
-          to="/"
-          className={styles.routerHomeLink}
-          onClick={(e) => {
-            if (location.pathname === "/") {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }
-          }}
+          to="/#home"
+          className={`${styles.routerHomeLink} ${activeHash === "#home" ? styles.active : ""}`}
+          onClick={(e) => handleNavLinkClick(e, "#home")}
         >
           Home
+          <span className={styles.indicator}></span>
         </RouterLink>
-        <RouterLink to="/#about" className={styles.routerHomeLink}>About</RouterLink>
-        <RouterLink to="/#projects" className={styles.routerHomeLink}>Projects</RouterLink>
+
+        <RouterLink 
+          to="/#about" 
+          className={`${styles.routerHomeLink} ${activeHash === "#about" ? styles.active : ""}`}
+          onClick={(e) => handleNavLinkClick(e, "#about")}
+        >
+          About
+          <span className={styles.indicator}></span>
+        </RouterLink>
+
+        <RouterLink 
+          to="/#projects" 
+          className={`${styles.routerHomeLink} ${activeHash === "#projects" ? styles.active : ""}`}
+          onClick={(e) => handleNavLinkClick(e, "#projects")}
+        >
+          Projects
+          <span className={styles.indicator}></span>
+        </RouterLink>
       </div>
-      
     </nav>
   );
 };

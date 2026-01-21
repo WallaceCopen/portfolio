@@ -1,16 +1,19 @@
 .Navbar {
   position: sticky;
-  top: 0;
+  top: 1em;
   left: 0;
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 1rem;
   height: 3rem;
   z-index: 1000;
+  margin: 1rem auto;
+  max-width: 600px;
+  border-radius: 1.75em;
 
-  /* Theme-aware glass background */
+
   background: linear-gradient(
     to right,
     color-mix(in oklab, var(--card) 100%, transparent),
@@ -29,10 +32,30 @@
 }
 
 .Navbar.scrolled {
-  /* Slightly stronger shadow when scrolled */
+
   box-shadow: 0 6px 26px color-mix(in oklab, var(--ring) 45%, transparent);
 }
 
+.indicator {
+  position: absolute;
+  bottom: -4px; 
+  left: 50%;
+  transform: translateX(-50%) scaleX(0); 
+  width: 60%;
+  height: 2px;
+  background: var(--ring); 
+  border-radius: 2px;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy effect */
+  box-shadow: 0 0 8px var(--ring);
+}
+.navLink.active .indicator {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.navLink:hover:not(.active) .indicator {
+  transform: translateX(-50%) scaleX(0.4);
+  opacity: 0.5;
+}
 .Navbar a{
   text-decoration: none;
   color: var(--text-muted);
@@ -49,9 +72,25 @@
   cursor: pointer;
 }
 
-/* Optional: active link state (if you add a className) */
 .Navbar a.active {
   color: var(--text);
   background: color-mix(in oklab, var(--card) 92%, transparent);
   box-shadow: inset 0 0 0 1px var(--border);
+}
+
+.navLinks {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .Navbar {
+    justify-content: center;
+    padding: 0 1rem;
+  }
+
+  .navLinks {
+    gap: 1.5rem
+  }
 }

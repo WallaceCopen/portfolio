@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+
 import styles from "./AboutMe.module.css";
 import { LargeTitle, Subtitle, Paragraph } from "../../components/Text";
 
-type Theme = "light" | "dark";
 
 type TimelineItemData = {
   id: string;
@@ -47,17 +46,6 @@ const timelineItems: TimelineItemData[] = [
   },
 ];
 
-// Small utility kept outside render so it’s not recreated every time
-const getInitialTheme = (): Theme => {
-  if (typeof window === "undefined") return "dark"; // fallback for safety
-  const stored = window.localStorage.getItem("theme");
-  if (stored === "light" || stored === "dark") return stored;
-
-  return window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-};
 
 const AboutCard: React.FC<{
   title: string;
@@ -90,29 +78,8 @@ const TimelineItem: React.FC<{ item: TimelineItemData; index: number }> = ({
 };
 
 const AboutMe: React.FC = () => {
-  const [theme, setTheme] = useState<Theme>(() => getInitialTheme());
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    window.localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const toggleTheme = () =>
-    setTheme((t) => (t === "dark" ? "light" : "dark"));
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }, []);
-
   return (
     <>
-      <button
-        className="theme-toggle"
-        onClick={toggleTheme}
-        aria-label="Toggle dark mode"
-      >
-        {theme === "dark" ? "🌙" : "☀️"}
-      </button>
 
       <main className={styles.aboutMePage}>
         <header className={styles.aboutMeHeader}>

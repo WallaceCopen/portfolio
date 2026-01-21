@@ -1,8 +1,9 @@
 
-import React, { useEffect, useState} from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./About.module.css";
 import { Link } from "react-router-dom";
+import Timeline from "../../components/Timeline";
 
 const PROJECT_ABOUT_CONTENT: Record<
   string,
@@ -112,27 +113,20 @@ const PROJECT_ABOUT_CONTENT: Record<
         description: "Ideas include a GUI version, history of calculations, and support for more advanced operations."
       }
     ]
+  },
+  "gituserevents": {
+    title: "Github CLI Tool",
+    subtitle: "A tool used to fetch the latest events of a github user",
+    body: "It makes use of the github API to find a user's latest activtiy. This project represents my first time interacting with an API.",
+    highlights: [
+      "Practiced using APIs",
+      "Handled Errors and Different usages",
+    ],
+
   }
 };
 
 const About: React.FC = () => {
-    const getInitialTheme = (): 'light' | 'dark' => {
-        const stored = localStorage.getItem('theme');
-        if (stored === 'light' || stored === 'dark') return stored;
-        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-          ? 'dark'
-          : 'light';
-      };
-    
-      const [theme, setTheme] = useState<'light' | 'dark'>(getInitialTheme);
-    
-      useEffect(() => {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-      }, [theme]);
-    
-      const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
-
       const { projectId } = useParams();
 
     const projectContent =
@@ -144,9 +138,6 @@ const About: React.FC = () => {
 
     return (
       <>
-        <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle dark mode">
-          {theme === 'dark' ? '🌙' : '☀️'}
-        </button>
         <div className={styles.aboutContainer}>
           {projectContent ? (
             <>
@@ -173,22 +164,7 @@ const About: React.FC = () => {
                   <h3 className={styles.sectionTitle}>
                     Timeline
                   </h3>
-                  <div className={styles.timeline}>
-                    {projectContent.timeline.map((entry, index) => (
-                      <div key={index} className={styles.timelineEntry}>
-                        <div className={styles.timelineDot} />
-                        <div className={styles.timelineDate}>
-                          {entry.date}
-                        </div>
-                        <div className={styles.timelineLabel}>
-                          {entry.label}
-                        </div>
-                        <div className={styles.timelineDescription}>
-                          {entry.description}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                  <Timeline items={projectContent.timeline} />
                 </div>
 
               )}

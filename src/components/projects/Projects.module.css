@@ -282,7 +282,16 @@
     background: color-mix(in oklab, var(--tech-javascript, #F7DF1E) 18%, transparent);
     box-shadow: 0 4px 12px color-mix(in oklab, var(--tech-javascript, #F7DF1E) 25%, transparent);
   }
+  .techJava {
+    border-color: var(--tech-javas, #f78c00);
+    color: var(--text);
+    background: color-mix(in oklab, var(--tech-java, #ff6a00) 8%, transparent);
+  }
   
+  .techJava:hover {
+    background: color-mix(in oklab, var(--tech-java, #f78c00) 18%, transparent);
+    box-shadow: 0 4px 12px color-mix(in oklab, var(--tech-java, #ff6a00) 25%, transparent);
+  }
   .techCSS {
     border-color: var(--tech-css, #1572B6);
     color: var(--text);
@@ -292,6 +301,16 @@
   .techCSS:hover {
     background: color-mix(in oklab, var(--tech-css, #1572B6) 18%, transparent);
     box-shadow: 0 4px 12px color-mix(in oklab, var(--tech-css, #1572B6) 25%, transparent);
+  }
+
+  .techPython {
+    border-color: var(--tech-python, #FFD43B);
+    color: var(--text);
+    background: color-mix(in oklab, var(--tech-python, #fff53a) 8%, transparent);
+  }
+  .techPython:hover {
+    background: color-mix(in oklab, var(--tech-python, #FFD43B) 18%, transparent);
+    box-shadow: 0 4px 12px color-mix(in oklab, var(--tech-python, #fff53a) 25%, transparent);
   }
   
   .techVite {

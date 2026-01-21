@@ -1,7 +1,13 @@
+/* Ensure keyframes are still present at the bottom of your file */
+@keyframes flow-energy {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
 .aboutMePage {
-  max-width: 90rem; /* ~960px */
+  max-width: 70rem;
   margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
+  padding: 4rem 1.5rem 6rem;
 }
 
 @media (min-width: 64rem) {
@@ -10,21 +16,22 @@
   }
 }
 
-.aboutMeHeader {
-  margin-bottom: 2.5rem;
-}
+.aboutMeHeader { margin-bottom: 3rem; }
+
+.aboutMeHeader h1 { font-weight: 800; letter-spacing: -0.03em; }
 
 .aboutMeHeader p {
   margin-top: 0.75rem;
-  max-width: 40rem;
-  opacity: 0.85;
+  max-width: 45rem;
+  opacity: 0.9;
+  font-size: 1.05rem;
 }
 
 /* Two-column card layout */
 .aboutMeGrid {
   display: grid;
-  gap: 1.5rem;
-  margin-bottom: 3rem;
+  gap: 2rem;
+  margin-bottom: 4rem;
 }
 
 @media (min-width: 56.25rem) {
@@ -37,35 +44,28 @@
 .aboutMeCard {
   border-radius: 1.5rem;
   padding: 1.5rem 1.6rem;
-  background: color-mix(in oklab, var(--card) 85%, transparent);
-  box-shadow:
-    0 0.75rem 2rem rgba(0, 0, 0, 0.35),
-    inset 0 0 0.5rem rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(0.75rem) saturate(140%);
-  -webkit-backdrop-filter: blur(0.75rem) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  transition:
-    transform 160ms ease-out,
-    box-shadow 160ms ease-out,
-    border-color 160ms ease-out,
-    background 160ms ease-out;
+  background: var(--card);
+  
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
 .aboutMeCard:hover {
-  transform: translateY(-0.15rem);
-  border-color: color-mix(in oklab, var(--accent) 45%, var(--border));
-  box-shadow:
-    0 1rem 2.5rem rgba(0, 0, 0, 0.5),
-    0 0 0 1px color-mix(in oklab, var(--accent) 35%, transparent);
+  background: var(--card); 
+  box-shadow: 
+    0 0.2rem 0.8rem rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px var(--border);
+  transform: translateY(-2px); 
+  transition: ease 0.2s;
+  
 }
+
 /* Card headings & lists */
 .aboutMeCardTitle {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.9rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
 .aboutMeList {
@@ -81,166 +81,114 @@
 }
 
 /* Timeline section */
-.aboutMeTimelineSection {
-  margin-top: 1rem;
-}
+.aboutMeTimelineSection { margin-top: 3rem; }
 
 .aboutMeSectionTitle {
   font-size: 1rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  opacity: 0.8;
-  margin-bottom: 1.25rem;
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
 }
 
 .aboutMeTimeline {
-  position: relative;
+  position:relative;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  max-width: 52rem;
+  gap: 1.5rem;
+  max-width: 60rem;
   margin: 0 auto;
-  padding: 0 0 2rem 0;
+  padding: 0 0 2rem 1.5rem;
 }
 
+/* THE LINE ::before (FIXED: uses var(--primary) for contrast) */
 .aboutMeTimeline::before {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%;
-  width: 0.125rem;
-  transform: translateX(-50%);
-  background: color-mix(in oklab, var(--border) 85%, var(--background) 20%);
+  left: 0.1rem; 
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--primary) 0%, /* Use primary color */
+    var(--primary) 50%, /* Use primary color */
+    var(--accent) 50%,
+    var(--border) 100%
+  );
+  background-size: 100% 200px;
+  animation: flow-energy 5s linear infinite;
   opacity: 0.9;
   z-index: 0;
 }
 
+
 .aboutMeTimelineItem {
   position: relative;
   z-index: 1;
-  width: 50%;
-  padding: 0.75rem 1.5rem;
-  border-radius: 1rem;
-  background: color-mix(in oklab, var(--card) 88%, transparent);
-  box-shadow:
-    0 0.75rem 2rem rgba(0, 0, 0, 0.35),
-    inset 0 0 0.5rem rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(0.75rem) saturate(140%);
-  -webkit-backdrop-filter: blur(0.75rem) saturate(140%);
+  width: 100%;
+  padding: 0.5rem 1.2rem;
+  border-radius: 0.75rem;
+  background: transparent; 
+  box-shadow: none; 
+  backdrop-filter: none; 
+  -webkit-backdrop-filter: none;
+  /* Add transitions for background and box-shadow */
+  transition: transform 160ms ease-out, background 160ms ease-out, box-shadow 160ms ease-out;
 }
 
-.aboutMeTimelineItem:hover {
-  box-shadow:
-    0 1rem 2.5rem rgba(0, 0, 0, 0.45),
-    inset 0 0 0.7rem rgba(255, 255, 255, 0.05);
-}
-
-.aboutMeTimelineItem:nth-child(odd) {
-  align-self: flex-start;
-  text-align: right;
-  padding-right: 2rem;
-}
-
-.aboutMeTimelineItem:nth-child(even) {
-  align-self: flex-end;
-  text-align: left;
-  padding-left: 2rem;
-}
-
+/* THE DOTS ::before (FIXED: uses var(--primary) for contrast and var(--accent) for ring) */
 .aboutMeTimelineItem::before {
   content: "";
   position: absolute;
   top: 1rem;
-  width: 0.6rem;
-  height: 0.6rem;
+  width: 0.7rem; 
+  height: 0.7rem;
   border-radius: 999px;
-  background: color-mix(in oklab, var(--accent) 80%, var(--background) 40%);
-  box-shadow: 0 0 0 0.08rem color-mix(in oklab, var(--background) 80%, transparent);
+  background: var(--primary); /* Uses primary color for contrast */
+  box-shadow: 0 0 0 0.2rem var(--accent); /* Use accent color for the visible ring */
+  left: -1.7rem; 
+  z-index: 1; 
 }
 
-/* energy connector that extends from the center line into the card on hover */
-.aboutMeTimelineItem::after {
-  content: "";
-  position: absolute;
-  top: 1.05rem;
-  height: 0.08rem;
-  border-radius: 999px;
-  background: linear-gradient(
-    to right,
-    color-mix(in oklab, var(--accent) 80%, transparent),
-    color-mix(in oklab, var(--accent) 30%, transparent)
-  );
-  opacity: 0;
-  transform-origin: center;
-  transition:
-    width 200ms ease-out,
-    opacity 200ms ease-out;
-  z-index: 2;
+.aboutMeTimelineItem:hover {
+  background: var(--card); 
+  
+  box-shadow: 
+    0 0.2rem 0.8rem rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px var(--border);
+  transform: translateX(2px); 
 }
 
-.aboutMeTimelineItem:nth-child(odd)::before {
-  right: -0.3rem;
-}
-
-.aboutMeTimelineItem:nth-child(even)::before {
-  left: -0.3rem;
-}
-
-.aboutMeTimelineItem:nth-child(odd)::after {
-  right: -0.3rem;
-  width: 0;
-}
-
-.aboutMeTimelineItem:nth-child(even)::after {
-  left: -0.3rem;
-  width: 0;
-}
-
-.aboutMeTimelineItem:nth-child(odd):hover::after {
-  opacity: 1;
-  width: 1.4rem;
-}
-
-.aboutMeTimelineItem:nth-child(even):hover::after {
-  opacity: 1;
-  width: 1.4rem;
-}
 
 .aboutMeTimelineDate {
-  font-size: 0.8rem;
-  opacity: 0.7;
+  font-size: 0.85rem;
+  opacity: 0.75;
   margin-bottom: 0.15rem;
 }
 
 .aboutMeTimelineLabel {
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 0.15rem;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .aboutMeTimelineDescription {
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   line-height: 1.5;
   opacity: 0.9;
 }
 
-.aboutMeCardPrimary {
-  height: 100%;
-}
+.aboutMeCardPrimary { height: 100%; }
+.aboutMeCardSecondary { height: 100%; }
 
-.aboutMeCardSecondary {
-  height: 100%;
-}
 
-@keyframes timelineEnergy {
+/* Ensure the keyframes we defined earlier are at the bottom of the file */
+@keyframes flow-energy {
   0% {
     background-position: 0% 0%;
   }
-  50% {
-    background-position: 0% 100%;
-  }
   100% {
-    background-position: 0% 0%;
+    background-position: 100% 100%;
   }
 }

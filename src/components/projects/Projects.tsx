@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import styles from './Projects.module.css';
 import { PROJECTS, Project } from '../../constants/projects';
 import { Link } from "react-router-dom"
@@ -50,7 +50,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
                   <polyline points="15 3 21 3 21 9"></polyline>
                   <line x1="10" y1="14" x2="21" y2="3"></line>
                 </svg>
-                Live Demo
+                Live
               </a>
             )}
             {project.about && (
@@ -73,10 +73,10 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         <p className={styles.projectDescription}>{project.description}</p>
         
         <div className={styles.projectTechnologies}>
-          {project.technologies.map((tech, index) => (
+          {project.technologies.map((tech) => (
             
               <a
-                key={index}
+                key={tech.name}
                 href={tech.website}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -117,18 +117,31 @@ const FilterButton: React.FC<FilterButtonProps> = ({ label, active, onClick }) =
 const ProjectsSection: React.FC = () => {
   const [filter, setFilter] = useState<string>('all');
 
-  // Get unique technologies for filter buttons
-  const allTechnologies = Array.from(
-    new Set(PROJECTS.flatMap(p => p.technologies.map(t => t.name)))
-  );
+
+const filteredTechnologies = useMemo (() => {
+  const projectCounts = PROJECTS.flatMap(p => p.technologies.map(t => t.name))
+  .reduce((acc, tech) => {
+    acc[tech] = (acc[tech] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
+  return Object.keys(projectCounts).filter((tech) => projectCounts[tech] > 2);
+}, []);
+
+
 
   // Filter projects
-  const filteredProjects = filter === 'all' 
-    ? PROJECTS 
-    : filter === 'featured'
-    ? PROJECTS.filter((p) => p.featured)
-    : PROJECTS.filter((p) => p.technologies.some((t) => t.name === filter));
+  const filteredProjects = useMemo (() => {
+    if (filter === 'all') return PROJECTS;
 
+    if (filter === 'featured') {
+      return PROJECTS.filter((p) => p.featured);
+    }
+
+    return PROJECTS.filter((p) => 
+    p.technologies.some((t) => t.name === filter)
+  );
+  }, [filter]);
   return (
     <section className={styles.projectsSection} id="projects">
       <div className={styles.projectsContainer}>
@@ -150,7 +163,7 @@ const ProjectsSection: React.FC = () => {
             active={filter === 'featured'} 
             onClick={() => setFilter('featured')}
           />
-           {allTechnologies.slice(0, 0).map((tech) => (
+           {filteredTechnologies.map((tech) => (
             <FilterButton 
               key={tech}
               label={tech} 
