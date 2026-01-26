@@ -108,8 +108,8 @@ const SecretCookie: React.FC = () => {
   const [cookiesPerClick, setCookiesPerClick] = useState<number>(1);
   const [autoClickers, setAutoClickers] = useState<number>(0);
 
-  const upgradeClickCost = 50 * cookiesPerClick;
-  const autoClickerCost = 100 * (autoClickers + 1);
+  const upgradeClickCost = 25 * cookiesPerClick;
+  const autoClickerCost = 50 * (autoClickers + 1);
 
   // Auto-clicker logic
   useEffect(() => {

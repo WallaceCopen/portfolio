@@ -100,9 +100,9 @@ export const PROJECTS: Project[] = [
   }, 
   {
     id: "gituserevents",
-    title: "Github User Events",
+    title: "GitHub User Events",
     image: userevents,
-    description: "A CLI tool used to fetch latest events of a github user",
+    description: "A CLI tool used to fetch latest events of a GitHub user",
     technologies: [
       {name: "Python", logo: python, website: "https://python.org" },
     ],

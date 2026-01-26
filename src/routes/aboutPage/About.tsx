@@ -4,10 +4,12 @@ import { useParams } from "react-router-dom";
 import styles from "./About.module.css";
 import { Link } from "react-router-dom";
 import Timeline from "../../components/Timeline";
+//import portfolio from "../../../public/favicon.png"
 
 const PROJECT_ABOUT_CONTENT: Record<
   string,
   {
+    //image?: string;
     title: string;
     subtitle: string;
     body: string;
@@ -115,9 +117,9 @@ const PROJECT_ABOUT_CONTENT: Record<
     ]
   },
   "gituserevents": {
-    title: "Github CLI Tool",
-    subtitle: "A tool used to fetch the latest events of a github user",
-    body: "It makes use of the github API to find a user's latest activtiy. This project represents my first time interacting with an API.",
+    title: "GitHub CLI Tool",
+    subtitle: "A tool used to fetch the latest events of a GitHub user",
+    body: "It makes use of the GitHub API to find a user's latest activtiy. This project represents my first time interacting with an API.",
     highlights: [
       "Practiced using APIs",
       "Handled Errors and Different usages",
@@ -166,22 +168,22 @@ const About: React.FC = () => {
                   </h3>
                   <Timeline items={projectContent.timeline} />
                 </div>
-
-              )}
-              <div className="backLink">
-                <Link to="/#projects">← Back to Projects</Link>
-              </div>
-            </>
+                  
+              )}  <div className={styles.backLink}>
+                    <Link to="/#projects">← Back to Projects</Link>
+                  </div>
+              </>
           ) : (
             <>
               <h1 className={styles.aboutTitle}>About</h1>
               <p className={styles.aboutBody}>This project does not have custom About content yet.</p>
-              <div className="backLink">
+              <div className={styles.backLink}>
                 <Link to="/#projects">← Back to Projects</Link>
               </div>
             </>
           )}
         </div>
+              
       </>
     );
 }
