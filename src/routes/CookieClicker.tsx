@@ -1,24 +1,60 @@
 import React, { useState, useEffect } from "react";
-import { TrophyIcon } from "lucide-react";
+import { TrophyIcon, Trash2, type LucideIcon } from "lucide-react";
 
+/* =======================
+   TYPES & CONFIG
+======================= */
+type GameState = {
+  cookies: number;
+  cookiesPerClick: number;
+  autoClickers: number;
+};
+
+type Achievement = {
+  id: string;
+  title: string;
+  description: string;
+  color: string;
+  icon: LucideIcon;
+  condition: (state: GameState) => boolean;
+};
+
+const ACHIEVEMENTS: Achievement[] = [
+  {
+    id: "millionaire",
+    title: "The Jordan Award",
+    description: "You have made 1,000,000 cookies.",
+    color: "#fbbf24",
+    icon: TrophyIcon,
+    condition: (state) => state.cookies >= 1_000_000,
+  },
+  {
+    id: "broke",
+    title: "The Spencer Award",
+    description: "You are broke.",
+    color: "#964B00",
+    icon: Trash2,
+    condition: (state) => state.cookies >= 10,
+  },
+];
+
+/* =======================
+   STYLES
+======================= */
 const embeddedStyles = `
 html, body, #root {
-  min-height: auto !important;
-  height: auto !important;
-  padding: 0 !important;
-  margin: 0 !important;
+  margin: 0;
+  padding: 0;
 }
+
 .secret-cookie-page {
-  min-height: calc(100vh - 5rem);  /* fill screen minus navbar height */
-  padding-top: 5rem;               /* space for navbar */
-  padding-bottom: 0;
+  min-height: calc(100vh - 5rem);
+  padding-top: 5rem;
   background: radial-gradient(circle at top, #fef3c7, #0f172a);
   display: flex;
   justify-content: center;
-  align-items: center;             /* vertically center the card in remaining space */
+  align-items: center;
 }
-
-
 
 .cookie-card {
   max-width: 500px;
@@ -30,22 +66,6 @@ html, body, #root {
   box-shadow: 0 20px 40px rgba(15, 23, 42, 0.6);
   text-align: center;
   color: #e5e7eb;
-  margin: 0 auto; /* center the card without flex */
-}
-
-.cookie-card h1 {
-  margin-bottom: 1rem;
-  font-size: 1.75rem;
-}
-
-.cookie-count span {
-  font-size: 1.8rem;
-  font-weight: 700;
-}
-
-.cookie-stats {
-  margin-bottom: 1.5rem;
-  opacity: 0.8;
 }
 
 .big-cookie {
@@ -56,16 +76,10 @@ html, body, #root {
   cursor: pointer;
   background: radial-gradient(circle, #f97316, #b45309);
   box-shadow: 0 10px 25px rgba(248, 150, 30, 0.7);
-  transition: transform 0.1s ease, box-shadow 0.1s ease, transform 0.1s ease;
-}
-
-.big-cookie:active {
-  transform: scale(0.92);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
 }
 
 .shop {
-  margin-top: 1.8rem;
+  margin-top: 1.5rem;
   display: grid;
   gap: 0.75rem;
 }
@@ -76,35 +90,13 @@ html, body, #root {
   padding: 0.6rem 1rem;
   background: rgba(15, 23, 42, 0.9);
   color: #e5e7eb;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background 0.15s ease, transform 0.1s ease, opacity 0.15s ease;
-}
-
-.shop-button:hover:not(:disabled) {
-  background: rgba(30, 64, 175, 0.9);
-  transform: translateY(-1px);
 }
 
 .shop-button:disabled {
   opacity: 0.4;
-  cursor: not-allowed;
 }
 
-.hint {
-  margin-top: 1.5rem;
-  font-size: 0.75rem;
-  opacity: 0.7;
-}
-
-.external-link {
-  margin-top: 1rem;
-  font-size: 0.8rem;
-  opacity: 0.8;
-  text-decoration: underline;
-  cursor: pointer;
-}
-  .award-overlay {
+.award-overlay {
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.85);
@@ -120,7 +112,7 @@ html, body, #root {
   background: #1e293b;
   padding: 3rem;
   border-radius: 2rem;
-  border: 2px solid #fbbf24;
+  border: 2px solid;
   text-align: center;
   position: relative;
   max-width: 400px;
@@ -128,14 +120,12 @@ html, body, #root {
 }
 
 .award-trophy {
-  color: #fbbf24;
   margin-bottom: 1.5rem;
   filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.6));
   animation: pulse 2s infinite;
 }
 
 .award-title {
-  color: #fbbf24;
   font-size: 1.8rem;
   margin-bottom: 1rem;
 }
@@ -144,184 +134,297 @@ html, body, #root {
   margin-top: 2rem;
   padding: 0.8rem 2rem;
   border-radius: 999px;
-  background: #fbbf24;
-  color: #0f172a;
   font-weight: bold;
   border: none;
   cursor: pointer;
   transition: transform 0.2s;
 }
 
-.claim-button:hover { transform: scale(1.05); }
+.claim-button:hover {
+  transform: scale(1.05);
+}
 
-@keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
 
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.view-achievements {
+  margin-top: 1.25rem;
+  border-radius: 999px;
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  background: none;
+  color: #fbbf24;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+}
+
+.achievements-panel {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 1rem;
+  max-height: 220px;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.achievement-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.achievement-row.locked {
+  opacity: 0.3;
+  filter: grayscale(1);
+}
+
+.reset-button {
+  margin-top: 1rem;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ef4444;
+  background: none;
+  color: #ef4444;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+
+.big-cookie:active {
+  transform: scale(0.92);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+}
+
+.shop-button {
+  transition: transform 0.08s ease, box-shadow 0.08s ease, opacity 0.15s ease;
+}
+
+.shop-button:active:not(:disabled) {
+  transform: translateY(1px) scale(0.98);
+}
+
+.view-achievements {
+  transition: transform 0.08s ease, opacity 0.15s ease;
+}
+
+.view-achievements:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+.reset-button:active {
+  transform: scale(0.96);
+}
 `;
 
-const SecretCookie: React.FC = () => {
- // 1. Initialize state from localStorage (or defaults)
-const [cookies, setCookies] = useState<number>(() => {
-  const saved = localStorage.getItem("cookie_count");
-  return saved ? JSON.parse(saved) : 0;
-});
+/* =======================
+   COMPONENT
+======================= */
+const CookieClicker: React.FC = () => {
+  /* --- Game State --- */
+  const [cookies, setCookies] = useState<number>(() => Number(localStorage.getItem("cookies")) || 0);
+  const [cookiesPerClick, setCookiesPerClick] = useState<number>(() => Number(localStorage.getItem("cookiesPerClick")) || 1);
+  const [autoClickers, setAutoClickers] = useState<number>(() => Number(localStorage.getItem("autoClickers")) || 0);
 
-const [cookiesPerClick, setCookiesPerClick] = useState<number>(() => {
-  const saved = localStorage.getItem("cookies_per_click");
-  return saved ? JSON.parse(saved) : 1;
-});
+  /* --- Achievements --- */
+  const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>(() => {
+    const saved = localStorage.getItem("unlocked_achievements");
+    return saved ? JSON.parse(saved) : [];
+  });
 
-const [autoClickers, setAutoClickers] = useState<number>(() => {
-  const saved = localStorage.getItem("auto_clickers");
-  return saved ? JSON.parse(saved) : 0;
-});
+  const [activeAchievement, setActiveAchievement] = useState<Achievement | null>(null);
 
-// 2. Save to localStorage whenever values change
-useEffect(() => {
-  localStorage.setItem("cookie_count", JSON.stringify(cookies));
-  localStorage.setItem("cookies_per_click", JSON.stringify(cookiesPerClick));
-  localStorage.setItem("auto_clickers", JSON.stringify(autoClickers));
-}, [cookies, cookiesPerClick, autoClickers]);
+  const [showAchievements, setShowAchievements] = useState(false);
 
-
-  const upgradeClickCost = 25 * cookiesPerClick;
-  const autoClickerCost = 50 * (autoClickers + 1);
-
+  /* --- Persistence --- */
   useEffect(() => {
-    // Expose a global "cheat" function
+    localStorage.setItem("cookies", cookies.toString());
+    localStorage.setItem("cookiesPerClick", cookiesPerClick.toString());
+    localStorage.setItem("autoClickers", autoClickers.toString());
+    localStorage.setItem("unlocked_achievements", JSON.stringify(unlockedAchievements));
+  }, [cookies, cookiesPerClick, autoClickers, unlockedAchievements]);
+
+  /* --- Achievement Engine --- */
+  useEffect(() => {
+    const state: GameState = { cookies, cookiesPerClick, autoClickers };
+
+    const achievement = ACHIEVEMENTS.find(
+      (a) => a.condition(state) && !unlockedAchievements.includes(a.id)
+    );
+
+    if (achievement) {
+      setActiveAchievement(achievement);
+      setUnlockedAchievements((prev) => [...prev, achievement.id]);
+    }
+  }, [cookies, cookiesPerClick, autoClickers, unlockedAchievements]);
+
+  // --- Debug Console Command ---
+  useEffect(() => {
     (window as any).setCookies = (amount: number) => {
-      setCookies(amount);
-      console.log(`✅ Cookies set to ${amount.toLocaleString()}`);
+      if (typeof amount !== "number" || Number.isNaN(amount)) {
+        console.warn("setCookies(amount) expects a number");
+        return;
+      }
+
+      setCookies(Math.max(0, Math.floor(amount)));
+      console.log(`🍪 Cookies set to ${amount.toLocaleString()}`);
     };
-  
-    console.log("🛠 Debug: Use 'setCookies(number)' in the console to test.");
+
+    return () => {
+      delete (window as any).setCookies;
+    };
   }, []);
 
-  const [hasShownAward, setHasShownAward] = useState(false);
-  const [showAward, setShowAward] = useState(false);
-
-  useEffect(() => {
-    if (cookies >= 1000000 && !hasShownAward) {
-      setShowAward(true);
-      setHasShownAward(true);
-    }
-  }, [cookies, hasShownAward]);
-
-
-  const achievement = () => {
-    return (
-      <div className="award">
-        <TrophyIcon />
-        <h1>You Have Surpassed 1,000,000</h1>
-      </div>
-    )
-  }
-
-  // Auto-clicker logic
+  /* --- Auto Clickers --- */
   useEffect(() => {
     if (autoClickers <= 0) return;
-
     const interval = setInterval(() => {
-      setCookies((prev) => prev + autoClickers);
+      setCookies((c) => c + autoClickers);
     }, 1000);
-
     return () => clearInterval(interval);
   }, [autoClickers]);
 
-  const handleCookieClick = () => {
-    setCookies((prev) => prev + cookiesPerClick);
-    if (cookies >= 1000000) {
-      achievement();
-    }
-  };
+  /* --- Costs --- */
+  const upgradeClickCost = 25 * cookiesPerClick;
+  const autoClickerCost = 50 * (autoClickers + 1);
 
-  const buyClickUpgrade = () => {
-    if (cookies >= upgradeClickCost) {
-      setCookies((prev) => prev - upgradeClickCost);
-      setCookiesPerClick((prev) => prev + 1);
-    }
-  };
+  const handleReset = () => {
+    if (!window.confirm("This will reset all cookies, upgrades, and achievements. Continue?")) return;
 
-  const buyAutoClicker = () => {
-    if (cookies >= autoClickerCost) {
-      setCookies((prev) => prev - autoClickerCost);
-      setAutoClickers((prev) => prev + 1);
-    }
-  };
-
-  const openOfficial = () => {
-    window.open("https://orteil.dashnet.org/cookieclicker/", "_blank");
+    localStorage.clear();
+    setCookies(0);
+    setCookiesPerClick(1);
+    setAutoClickers(0);
+    setUnlockedAchievements([]);
+    setActiveAchievement(null);
   };
 
   return (
     <>
       <style>{embeddedStyles}</style>
-      <div className="secret-cookie-page">
-      {showAward && (
+
+      {activeAchievement && (
         <div className="award-overlay">
-          <div className="award-modal">
-            <div className="award-glow"></div>
-            <TrophyIcon className="award-trophy" size={64} />
-            <h2 className="award-title">The Jordan Award</h2>
-            <p className="award-text">
-             You have made 1,000,000 cookies great job
-            </p>
-            <button className="claim-button" onClick={() => setShowAward(false)}>
+          <div
+            className="award-modal"
+            style={{ borderColor: activeAchievement.color }}
+          >
+            <activeAchievement.icon
+              className="award-trophy"
+              size={64}
+              strokeWidth={2.2}
+              style={{ color: activeAchievement.color }}
+            />
+
+            <h2
+              className="award-title"
+              style={{ color: activeAchievement.color }}
+            >
+              {activeAchievement.title}
+            </h2>
+
+            <p>{activeAchievement.description}</p>
+
+            <button
+              className="claim-button"
+              style={{ background: activeAchievement.color, color: "#0f172a" }}
+              onClick={() => setActiveAchievement(null)}
+            >
               Keep Going
             </button>
           </div>
         </div>
       )}
 
+      <div className="secret-cookie-page">
         <div className="cookie-card">
-        <h1>Cookie Clicker</h1>
-
-        <p className="cookie-count">
-          Cookies: <span>{cookies}</span>
-        </p>
-
-        <p className="cookie-stats">
-          <span>Per Click: {cookiesPerClick}</span> •{" "}
-          <span>Auto Clickers: {autoClickers}</span>
-        </p>
-
-        <button
-          className="big-cookie"
-          onClick={handleCookieClick}
-          aria-label="Click the cookie"
-        >
-          🍪
-        </button>
-
-        <div className="shop">
-          <button
-            className="shop-button"
-            disabled={cookies < upgradeClickCost}
-            onClick={buyClickUpgrade}
-          >
-            Upgrade Click (+1 / click) — Cost: {upgradeClickCost}
-          </button>
+          <h1>Cookie Clicker</h1>
+          <p>Cookies: <strong>{cookies.toLocaleString()}</strong></p>
+          <p>Per Click: {cookiesPerClick} • Auto Clickers: {autoClickers}</p>
 
           <button
-            className="shop-button"
-            disabled={cookies < autoClickerCost}
-            onClick={buyAutoClicker}
+            className="big-cookie"
+            onClick={() => setCookies((c) => c + cookiesPerClick)}
           >
-            Buy Auto-Clicker (+1 / sec) — Cost: {autoClickerCost}
+            🍪
           </button>
 
-    
-        </div>
+          <div className="shop">
+            <button
+              className="shop-button"
+              disabled={cookies < upgradeClickCost}
+              onClick={() => {
+                setCookies((c) => c - upgradeClickCost);
+                setCookiesPerClick((p) => p + 1);
+              }}
+            >
+              Upgrade Click — Cost: {upgradeClickCost}
+            </button>
 
-        <p className="hint">For Sawyer and other Cookie People</p>
+            <button
+              className="shop-button"
+              disabled={cookies < autoClickerCost}
+              onClick={() => {
+                setCookies((c) => c - autoClickerCost);
+                setAutoClickers((a) => a + 1);
+              }}
+            >
+              Buy Auto-Clicker — Cost: {autoClickerCost}
+            </button>
+          </div>
 
-        <p className="external-link" onClick={openOfficial}>
-          Or open the official Cookie Clicker in a new tab →
-        </p>
+          <button
+            className="view-achievements"
+            onClick={() => setShowAchievements((v) => !v)}
+          >
+            {showAchievements ? "Hide Achievements ▲" : "View Achievements ▼"}
+          </button>
+
+          {showAchievements && (
+            <div className="achievements-panel">
+              {ACHIEVEMENTS.map((a) => {
+                const unlocked = unlockedAchievements.includes(a.id);
+                return (
+                  <div
+                    key={a.id}
+                    className={`achievement-row ${unlocked ? "" : "locked"}`}
+                  >
+                    <div
+                      style={{
+                        color: unlocked ? a.color : "#666",
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      {unlocked ? <a.icon size={32} strokeWidth={2.2} /> : "🔒"}
+                    </div>
+                    <div>
+                      <strong>{a.title}</strong>
+                      <p style={{ fontSize: "0.75rem", opacity: 0.8 }}>
+                        {unlocked ? a.description : "Locked achievement"}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+
+              <button className="reset-button" onClick={handleReset}>
+                Reset Game
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>
   );
 };
 
-export default SecretCookie;
+export default CookieClicker;
