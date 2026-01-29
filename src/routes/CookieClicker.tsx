@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { TrophyIcon } from "lucide-react";
 
 const embeddedStyles = `
 html, body, #root {
@@ -16,6 +17,8 @@ html, body, #root {
   justify-content: center;
   align-items: center;             /* vertically center the card in remaining space */
 }
+
+
 
 .cookie-card {
   max-width: 500px;
@@ -101,15 +104,118 @@ html, body, #root {
   text-decoration: underline;
   cursor: pointer;
 }
+  .award-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.award-modal {
+  background: #1e293b;
+  padding: 3rem;
+  border-radius: 2rem;
+  border: 2px solid #fbbf24;
+  text-align: center;
+  position: relative;
+  max-width: 400px;
+  box-shadow: 0 0 50px rgba(251, 191, 36, 0.3);
+}
+
+.award-trophy {
+  color: #fbbf24;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.6));
+  animation: pulse 2s infinite;
+}
+
+.award-title {
+  color: #fbbf24;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.claim-button {
+  margin-top: 2rem;
+  padding: 0.8rem 2rem;
+  border-radius: 999px;
+  background: #fbbf24;
+  color: #0f172a;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.claim-button:hover { transform: scale(1.05); }
+
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+
 `;
 
 const SecretCookie: React.FC = () => {
-  const [cookies, setCookies] = useState<number>(0);
-  const [cookiesPerClick, setCookiesPerClick] = useState<number>(1);
-  const [autoClickers, setAutoClickers] = useState<number>(0);
+ // 1. Initialize state from localStorage (or defaults)
+const [cookies, setCookies] = useState<number>(() => {
+  const saved = localStorage.getItem("cookie_count");
+  return saved ? JSON.parse(saved) : 0;
+});
+
+const [cookiesPerClick, setCookiesPerClick] = useState<number>(() => {
+  const saved = localStorage.getItem("cookies_per_click");
+  return saved ? JSON.parse(saved) : 1;
+});
+
+const [autoClickers, setAutoClickers] = useState<number>(() => {
+  const saved = localStorage.getItem("auto_clickers");
+  return saved ? JSON.parse(saved) : 0;
+});
+
+// 2. Save to localStorage whenever values change
+useEffect(() => {
+  localStorage.setItem("cookie_count", JSON.stringify(cookies));
+  localStorage.setItem("cookies_per_click", JSON.stringify(cookiesPerClick));
+  localStorage.setItem("auto_clickers", JSON.stringify(autoClickers));
+}, [cookies, cookiesPerClick, autoClickers]);
+
 
   const upgradeClickCost = 25 * cookiesPerClick;
   const autoClickerCost = 50 * (autoClickers + 1);
+
+  useEffect(() => {
+    // Expose a global "cheat" function
+    (window as any).setCookies = (amount: number) => {
+      setCookies(amount);
+      console.log(`✅ Cookies set to ${amount.toLocaleString()}`);
+    };
+  
+    console.log("🛠 Debug: Use 'setCookies(number)' in the console to test.");
+  }, []);
+
+  const [hasShownAward, setHasShownAward] = useState(false);
+  const [showAward, setShowAward] = useState(false);
+
+  useEffect(() => {
+    if (cookies >= 1000000 && !hasShownAward) {
+      setShowAward(true);
+      setHasShownAward(true);
+    }
+  }, [cookies, hasShownAward]);
+
+
+  const achievement = () => {
+    return (
+      <div className="award">
+        <TrophyIcon />
+        <h1>You Have Surpassed 1,000,000</h1>
+      </div>
+    )
+  }
 
   // Auto-clicker logic
   useEffect(() => {
@@ -124,6 +230,9 @@ const SecretCookie: React.FC = () => {
 
   const handleCookieClick = () => {
     setCookies((prev) => prev + cookiesPerClick);
+    if (cookies >= 1000000) {
+      achievement();
+    }
   };
 
   const buyClickUpgrade = () => {
@@ -148,8 +257,24 @@ const SecretCookie: React.FC = () => {
     <>
       <style>{embeddedStyles}</style>
       <div className="secret-cookie-page">
+      {showAward && (
+        <div className="award-overlay">
+          <div className="award-modal">
+            <div className="award-glow"></div>
+            <TrophyIcon className="award-trophy" size={64} />
+            <h2 className="award-title">The Jordan Award</h2>
+            <p className="award-text">
+             You have made 1,000,000 cookies great job
+            </p>
+            <button className="claim-button" onClick={() => setShowAward(false)}>
+              Keep Going
+            </button>
+          </div>
+        </div>
+      )}
+
         <div className="cookie-card">
-        <h1>🍪 Secret Cookie Lab</h1>
+        <h1>Cookie Clicker</h1>
 
         <p className="cookie-count">
           Cookies: <span>{cookies}</span>
