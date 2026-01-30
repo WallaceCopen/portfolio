@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TrophyIcon, type LucideIcon } from "lucide-react";
+import { TrophyIcon, LogIn, type LucideIcon } from "lucide-react";
 
 /* =======================
    TYPES & CONFIG
@@ -8,6 +8,7 @@ type GameState = {
   cookies: number;
   cookiesPerClick: number;
   autoClickers: number;
+  hasPressedEnter: boolean;
 };
 
 type Achievement = {
@@ -44,7 +45,14 @@ const ACHIEVEMENTS: Achievement[] = [
     color: "#CD7F32",
     icon: TrophyIcon,
   },
-  
+  {
+    id: "enterkey",
+    title:"The Enter Key",
+    description: "Good job finding the enter key",
+    condition: (state) => state.hasPressedEnter === true,
+    color: "#6366f1",
+    icon: LogIn,
+  }
  
 ];
 
@@ -244,6 +252,8 @@ const CookieClicker: React.FC = () => {
   const [cookiesPerClick, setCookiesPerClick] = useState<number>(() => Number(localStorage.getItem("cookiesPerClick")) || 1);
   const [autoClickers, setAutoClickers] = useState<number>(() => Number(localStorage.getItem("autoClickers")) || 0);
 
+  const [hasPressedEnter, sethasPressedEnter ] = useState(false);
+
   /* --- Achievements --- */
   const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>(() => {
     const saved = localStorage.getItem("unlocked_achievements");
@@ -264,7 +274,7 @@ const CookieClicker: React.FC = () => {
 
   /* --- Achievement Engine --- */
   useEffect(() => {
-    const state: GameState = { cookies, cookiesPerClick, autoClickers };
+    const state: GameState = { cookies, cookiesPerClick, autoClickers, hasPressedEnter };
 
     const achievement = ACHIEVEMENTS.find(
       (a) => a.condition(state) && !unlockedAchievements.includes(a.id)
@@ -274,7 +284,7 @@ const CookieClicker: React.FC = () => {
       setActiveAchievement(achievement);
       setUnlockedAchievements((prev) => [...prev, achievement.id]);
     }
-  }, [cookies, cookiesPerClick, autoClickers, unlockedAchievements]);
+  }, [cookies, cookiesPerClick, autoClickers, unlockedAchievements, hasPressedEnter]);
 
   // --- Debug Console Command ---
   useEffect(() => {
@@ -317,6 +327,18 @@ const CookieClicker: React.FC = () => {
     setActiveAchievement(null);
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key ===  "Enter") {
+        sethasPressedEnter(true)
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+  
+
+    
   return (
     <>
       <style>{embeddedStyles}</style>
