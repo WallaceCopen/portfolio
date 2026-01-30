@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TrophyIcon, Trash2, type LucideIcon } from "lucide-react";
+import { TrophyIcon, type LucideIcon } from "lucide-react";
 
 /* =======================
    TYPES & CONFIG
@@ -29,13 +29,23 @@ const ACHIEVEMENTS: Achievement[] = [
     condition: (state) => state.cookies >= 1_000_000,
   },
   {
-    id: "broke",
+    id: "richer",
     title: "The Spencer Award",
-    description: "You are broke.",
-    color: "#964B00",
-    icon: Trash2,
-    condition: (state) => state.cookies >= 10,
+    description: "Almost to a million.",
+    color: "#C0C0C0",
+    icon: TrophyIcon,
+    condition: (state) => state.cookies >= 100_000,
   },
+  {
+    id:"automation",
+    title:"The Automation Award",
+    description:"You have a lot of auto clickers.",
+    condition: (state) => state.autoClickers >= 70,
+    color: "#CD7F32",
+    icon: TrophyIcon,
+  },
+  
+ 
 ];
 
 /* =======================
