@@ -47,7 +47,7 @@ const ACHIEVEMENTS: Achievement[] = [
   },
   {
     id: "enterkey",
-    title:"The Enter Key",
+    title:"The Ian Award",
     description: "Good job finding the enter key",
     condition: (state) => state.hasPressedEnter === true,
     color: "#6366f1",
