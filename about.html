@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About &middot; Wallace Copen</title>
+    <meta name="description" content="A longer bio: how Wallace got into programming, what he does besides code, what he's reading and thinking about." />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#f4f1ea" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content="https://wallacecopen.dev/about/" />
+    <meta property="og:title" content="About — Wallace Copen" />
+    <meta property="og:description" content="A longer bio: how Wallace got into programming, what he does besides code, what he's reading and thinking about." />
+    <meta property="og:image" content="https://wallacecopen.dev/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="canonical" href="https://wallacecopen.dev/about/" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="sub-back"><a href="../">&larr; wallace copen</a></div>
+        <div>
+          <h1>About</h1>
+          <p class="sub-meta mono">a longer bio</p>
+        </div>
+      </header>
+
+      <section>
+        <div class="mono-cap">intro</div>
+        <div class="sec-content">
+          <p class="lede">
+            If you want the longer version
+            of who I am and what I&rsquo;m doing, here it is.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="mono-cap">how I got here</div>
+        <div class="sec-content">
+          <p>
+            I started with HTML when I was ten. I don&rsquo;t remember exactly
+            why &mdash; probably because I wanted to make a website for
+            something I cared about and the only way to do that was to learn
+            how. CSS came next, then JavaScript, then a long stretch of
+            building small things that didn&rsquo;t work very well but taught
+            me what working things were supposed to feel like.
+          </p>
+          <p>
+            At a summer camp, I learned from a real Software Engineer more about how real websites are designed. Once I got home I began to learn about a bunch of new things.
+            One of these new things was <code>react</code>. From there I created BitWise. 
+          </p>
+          <p>
+            Now I&rsquo;m still learning and diving deeper into Software Engineering. I am learning new technologies like Redis, Springboot, AWS, and C.        
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="mono-cap">besides code</div>
+        <div class="sec-content">
+          <p>
+            I climb. I started in 2024 and joined a youth competitive team
+            shortly after.
+          </p>
+          <p>
+            I play guitar in a band. I love to play Radiohead and other alternative rock bands.</p>
+        </div>
+      </section>
+
+      <section>
+        <div class="mono-cap">contact</div>
+        <div class="sec-content">
+          <p>
+            The fastest way to reach me is
+            <a href="mailto:contact@wallacecopen.dev">email</a>. My code is on
+            <a href="https://github.com/WallaceCopen">GitHub</a>.          
+          </p>
+        </div>
+      </section>
+
+      <footer>
+        <div class="mono ft-marker">end</div>
+        <p class="ft-text mono"><a href="../">back to wallace copen</a></p>
+        <button id="theme-toggle" type="button" aria-label="Toggle theme">
+          <span data-show="light">light</span>
+          <span class="tt-sep">/</span>
+          <span data-show="dark">dark</span>
+        </button>
+      </footer>
+    </main>
+
+    <script>
+      const root = document.documentElement;
+      const stored = localStorage.getItem("theme");
+      const initial = stored || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      root.dataset.theme = initial;
+      document.getElementById("theme-toggle").addEventListener("click", () => {
+        const next = root.dataset.theme === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        localStorage.setItem("theme", next);
+      });
+    </script>
+  </body>
+</html>

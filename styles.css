@@ -1,0 +1,339 @@
+/* ============================================================
+   Wallace Copen — portfolio styles
+   Source Serif for prose, JetBrains Mono for metadata.
+   One stylesheet for every page.
+   ============================================================ */
+
+/* ---------- theme tokens ---------- */
+
+:root[data-theme='light'] {
+  --bg:          #f4f1ea;
+  --bg-soft:     #ebe6db;
+  --ink:         #1a1714;
+  --ink-soft:    #5a544c;
+  --rule:        #d6cfc0;
+  --accent:      #8a2a2a;
+  --accent-soft: #b85050;
+}
+
+:root[data-theme='dark'] {
+  --bg:          #14110e;
+  --bg-soft:     #1c1815;
+  --ink:         #e8e2d4;
+  --ink-soft:    #968f82;
+  --rule:        #2c2823;
+  --accent:      #d96a6a;
+  --accent-soft: #f0a0a0;
+}
+
+/* fallback values for first paint before JS sets data-theme */
+:root {
+  --bg:          #f4f1ea;
+  --bg-soft:     #ebe6db;
+  --ink:         #1a1714;
+  --ink-soft:    #5a544c;
+  --rule:        #d6cfc0;
+  --accent:      #8a2a2a;
+  --accent-soft: #b85050;
+  color-scheme: light dark;
+}
+
+/* ---------- base ---------- */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family:'Source Serif 4', 'Iowan Old Style', Georgia, serif;
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 5rem 1.75rem 4rem;
+}
+
+p { margin: 0 0 1.1rem; max-width: 60ch; }
+p:last-child { margin-bottom: 0; }
+
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+a:hover { color: var(--accent); }
+
+cite { font-style: italic; }
+code {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.88em;
+  color: var(--accent);
+}
+
+/* ---------- mono utilities ---------- */
+
+.mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+}
+
+.mono-cap {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+/* ---------- header (shared) ---------- */
+
+header {
+  margin-bottom: 4rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+}
+
+.hd-marker { color: var(--ink-soft); }
+.hd-marker a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.hd-marker a:hover { color: var(--accent); }
+
+h1 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.4rem;
+}
+
+.contact {
+  margin: 0;
+  color: var(--ink-soft);
+  max-width: none;
+}
+.contact a {
+  color: var(--ink-soft);
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.contact a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+.contact .sep { margin: 0 0.4em; color: var(--rule); }
+
+/* ---------- sections (two-column grid) ---------- */
+
+section {
+  margin-bottom: 3.5rem;
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 2rem;
+  align-items: baseline;
+}
+.sec-content > *:first-child { margin-top: 0; }
+
+.lede {
+  font-size: 1.18rem;
+  line-height: 1.55;
+}
+
+/* ---------- project list ---------- */
+
+.proj-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.proj-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1.25rem;
+  align-items: baseline;
+}
+
+.proj-date {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+}
+
+.proj-title {
+  font-size: 1.02rem;
+  font-weight: 600;
+  margin: 0;
+  font-family: 'Source Serif 4', serif;
+  max-width: none;
+}
+.proj-title a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.proj-title a:hover { color: var(--ink); }
+
+.proj-desc { margin: 0.25rem 0 0.4rem; }
+
+.proj-stack {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+  margin: 0;
+  max-width: none;
+}
+.proj-stack .dot { color: var(--rule); margin: 0 0.4em; }
+.proj-stack a {
+  color: var(--ink-soft);
+  text-decoration-color: var(--rule);
+}
+.proj-stack a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+/* ---------- subpage hero (BitWise, About) ---------- */
+
+/* On subpages the header uses the same grid but the right column
+   carries the page title instead of the site title. The left column
+   becomes a back-link. */
+.sub-back {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+}
+.sub-back a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+.sub-back a:hover { color: var(--accent); }
+
+.sub-meta {
+  margin: 0;
+  color: var(--ink-soft);
+  max-width: none;
+}
+
+/* ---------- lists inside prose ---------- */
+
+ul.prose {
+  list-style: circle;
+  padding-left: 1.4rem;
+  margin: 0 0 1.1rem;
+}
+ul.prose li {
+  margin-bottom: 0.4rem;
+  max-width: 60ch;
+}
+ul.prose li::marker { color: var(--accent); }
+
+/* ---------- footer ---------- */
+
+footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 130px 1fr auto;
+  gap: 2rem;
+  align-items: baseline;
+}
+
+.ft-marker { color: var(--ink-soft); }
+.ft-text { color: var(--ink-soft); margin: 0; max-width: none; }
+
+#theme-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  transition: color 0.15s ease;
+}
+#theme-toggle:hover { color: var(--accent); }
+#theme-toggle:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.tt-sep { color: var(--rule); }
+
+:root[data-theme='light'] #theme-toggle [data-show='light'],
+:root[data-theme='dark']  #theme-toggle [data-show='dark']  {
+  color: var(--ink);
+}
+
+/* ---------- small screens ---------- */
+
+@media (max-width: 640px) {
+  body { font-size: 17px; }
+  main { padding: 3.5rem 1.25rem 3rem; }
+
+  header, section, footer {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+  header { gap: 1rem; }
+  h1 { font-size: 1.55rem; }
+  .lede { font-size: 1.08rem; }
+
+  .proj-row { grid-template-columns: 1fr; gap: 0.25rem; }
+  .proj-date { order: -1; }
+
+  ul.prose li { max-width: none; }
+}
+
+/* ---------- page-load fade ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  main { animation: fade-in 0.6s ease-out; }
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: none; }
+  }
+}
+
+/* ---------- print ---------- */
+
+@media print {
+  body { background: white; color: black; font-size: 11pt; }
+  a { color: black; }
+  footer { display: none; }
+  .hd-marker, .sub-back { display: none; }
+  header, section, footer { display: block; }
+}

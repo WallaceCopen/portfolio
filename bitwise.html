@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BitWise &middot; Wallace Copen</title>
+    <meta name="description" content="BitWise — an adaptive learning platform for bitwise operations. Built by Wallace Copen." />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#f4f1ea" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wallacecopen.dev/bitwise/" />
+    <meta property="og:title" content="BitWise — Wallace Copen" />
+    <meta property="og:description" content="An adaptive learning platform for bitwise operations." />
+    <meta property="og:image" content="https://wallacecopen.dev/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="canonical" href="https://wallacecopen.dev/bitwise/" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="sub-back"><a href="../">&larr; wallace copen</a></div>
+        <div>
+          <h1>BitWise</h1>
+          <p class="sub-meta mono">
+            adaptive learning platform
+            <span class="sep">&middot;</span>
+            <a href="https://learnbitwise.com">learnbitwise.com</a>
+          </p>
+        </div>
+      </header>
+
+      <section>
+        <div class="mono-cap">overview</div>
+        <div class="sec-content">
+          <p class="lede">
+            BitWise is the project I care most about right now. It teaches people programming through quick interactive lessons.
+            It also features an adaptive diagnostic for people who are not new to programming and will allow them to skip intro lessons and get to where they need to be.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="mono-cap">what it does</div>
+        <div class="sec-content">
+          <p>
+            BitWise starts by first taking users through in onboarding where they pick what field of programming they would like to focus on (ie. Web Development), and sets the language they would like to learn.
+            They then get taken to their first lesson. Each lesson is made up of 4 main steps: learn, try it, challenge, and reading. Through this each large concept is broken into small parts and each lesson tackles each one of those small parts in easy steps.
+
+          </p>
+          <!--> Add next paragraph about real user experiences when that happens </-->
+        </div>
+      </section>
+
+      <section>
+        <div class="mono-cap">how it&rsquo;s built</div>
+        <div class="sec-content">
+          <p>
+            The frontend is Next.js (App Router) with React and TypeScript.
+            Supabase handles auth and Postgres. Stripe handles billing. The code execution
+            is run through a self-hosted deployment of <code>piston</code> on AWS.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="mono-cap">what I learned</div>
+        <div class="sec-content">
+          <p>
+            I learned so much from this project as it was my first fullstack application. Before this my only "projects" were simple multi-page HTML sites. Through this project I have learned
+            about API design, caching, databases, best practices, and more.
+          </p>
+          <p> For example the first version of the <code>rate limiter</code> I deisgned rain in memory
+            which doesn&rsquo;t survive Vercel&rsquo;s serverless architecture. I had to update it to use <code>Upstash</code>.
+          </p>
+          <p>
+            This project has also taught me what I would like to do different in my next project. For example, in my next project I will plan it out more before coding, as I have learned this leads to a better long-term experience and makes maintainability much easier.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="mono-cap">next</div>
+        <div class="sec-content">
+          <p>
+            Next, I will be using BitWise in my school's coding club to teach beginners programming. Additionally more languages will be added to support a wider group of learners.  
+          </p>
+        </div>
+      </section>
+
+      <footer>
+        <div class="mono ft-marker">end</div>
+        <p class="ft-text mono"><a href="../">back to wallace copen</a></p>
+        <button id="theme-toggle" type="button" aria-label="Toggle theme">
+          <span data-show="light">light</span>
+          <span class="tt-sep">/</span>
+          <span data-show="dark">dark</span>
+        </button>
+      </footer>
+    </main>
+
+    <script>
+      const root = document.documentElement;
+      const stored = localStorage.getItem("theme");
+      const initial = stored || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      root.dataset.theme = initial;
+      document.getElementById("theme-toggle").addEventListener("click", () => {
+        const next = root.dataset.theme === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        localStorage.setItem("theme", next);
+      });
+    </script>
+  </body>
+</html>
