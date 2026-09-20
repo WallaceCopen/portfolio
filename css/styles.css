@@ -1,10 +1,8 @@
 /* ============================================================
    Wallace Copen — portfolio styles
-   Source Serif for prose, JetBrains Mono for metadata.
-   One stylesheet for every page.
    ============================================================ */
 
-/* ---------- theme tokens ---------- */
+/* ---------- vars ---------- */
 
 :root[data-theme='light'] {
   --bg:          #f4f1ea;
@@ -110,6 +108,16 @@ header {
   align-items: baseline;
 }
 
+/* Grid items default to a minimum width based on their content, which
+   lets an unbroken string (a URL, a long word) force a track wider
+   than the viewport instead of wrapping. This is what actually makes
+   overflow-wrap take effect on narrow screens. */
+header > *:last-child,
+section > *:last-child,
+footer > *:last-child {
+  min-width: 0;
+}
+
 .hd-marker { color: var(--ink-soft); }
 .hd-marker a {
   color: var(--ink-soft);
@@ -177,6 +185,12 @@ section {
   align-items: baseline;
 }
 
+/* Same grid-blowout fix as above, scoped to project rows specifically
+   since they're the most likely place for a long unbroken URL. */
+.proj-row > div:last-child {
+  min-width: 0;
+}
+
 .proj-date {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 0.74rem;
@@ -208,6 +222,7 @@ section {
   letter-spacing: 0.02em;
   margin: 0;
   max-width: none;
+  overflow-wrap: break-word;
 }
 .proj-stack .dot { color: var(--rule); margin: 0 0.4em; }
 .proj-stack a {
@@ -301,21 +316,73 @@ footer {
 /* ---------- small screens ---------- */
 
 @media (max-width: 640px) {
-  body { font-size: 17px; }
-  main { padding: 3.5rem 1.25rem 3rem; }
+  body {
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  main { padding: 3rem 1.25rem 3.5rem; }
 
+  /* Collapse the two-column grid everywhere. The grid's horizontal gap
+     was doing spacing work on desktop, so once it collapses to one
+     column we have to rebuild that spacing vertically instead of
+     just letting everything run together. */
   header, section, footer {
     grid-template-columns: 1fr;
-    gap: 0.6rem;
+    gap: 0;
   }
-  header { gap: 1rem; }
-  h1 { font-size: 1.55rem; }
-  .lede { font-size: 1.08rem; }
 
-  .proj-row { grid-template-columns: 1fr; gap: 0.25rem; }
+  /* The "portfolio" / "end" rail markers only make sense as a sidebar
+     next to content in the desktop grid — stacked on mobile they're
+     just stray words with no function. Section labels (about,
+     building, learning...) stay, since those are real headers. */
+  .hd-marker,
+  .ft-marker {
+    display: none;
+  }
+
+  header {
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+  }
+  h1 {
+    font-size: 1.6rem;
+    margin-bottom: 0.7rem;
+  }
+  .contact {
+    line-height: 2;
+  }
+  .contact .sep { margin: 0 0.35em; }
+
+  section { margin-bottom: 3rem; }
+  .mono-cap { margin-bottom: 1rem; }
+  .lede { font-size: 1.1rem; line-height: 1.6; }
+
+  .proj-list { gap: 1.85rem; }
+  .proj-row { grid-template-columns: 1fr; gap: 0.35rem; }
   .proj-date { order: -1; }
+  .proj-title { font-size: 1.06rem; }
+
+  /* Bigger, easier-to-tap links on a touchscreen. */
+  section a,
+  .proj-title a,
+  .contact a,
+  .sub-meta a {
+    padding: 0.15em 0;
+  }
 
   ul.prose li { max-width: none; }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    gap: 0.75rem;
+  }
+  #theme-toggle {
+    padding: 0.4rem 0;
+  }
+
+  /* Subpage back-link and hero */
+  .sub-back { margin-bottom: 0.75rem; }
 }
 
 /* ---------- page-load fade ---------- */
